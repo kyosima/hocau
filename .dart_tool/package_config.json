@@ -8,6 +8,12 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "auto_height_grid_view",
+      "rootUri": "file:///Users/simakyo/.pub-cache/hosted/pub.dev/auto_height_grid_view-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
       "name": "awesome_dialog",
       "rootUri": "file:///Users/simakyo/.pub-cache/hosted/pub.dev/awesome_dialog-3.2.1",
       "packageUri": "lib/",
@@ -38,6 +44,18 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "crypto",
+      "rootUri": "file:///Users/simakyo/.pub-cache/hosted/pub.dev/crypto-3.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
+      "name": "csslib",
+      "rootUri": "file:///Users/simakyo/.pub-cache/hosted/pub.dev/csslib-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
       "name": "cupertino_icons",
       "rootUri": "file:///Users/simakyo/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.6",
       "packageUri": "lib/",
@@ -62,8 +80,20 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "flutter_image_slideshow",
+      "rootUri": "file:///Users/simakyo/.pub-cache/hosted/pub.dev/flutter_image_slideshow-0.1.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_lints",
       "rootUri": "file:///Users/simakyo/.pub-cache/hosted/pub.dev/flutter_lints-2.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
+      "name": "flutter_plugin_android_lifecycle",
+      "rootUri": "file:///Users/simakyo/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.17",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
@@ -92,10 +122,58 @@
       "languageVersion": "2.16"
     },
     {
+      "name": "google_fonts",
+      "rootUri": "file:///Users/simakyo/.pub-cache/hosted/pub.dev/google_fonts-4.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
+      "name": "google_maps",
+      "rootUri": "file:///Users/simakyo/.pub-cache/hosted/pub.dev/google_maps-6.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "google_maps_flutter",
+      "rootUri": "file:///Users/simakyo/.pub-cache/hosted/pub.dev/google_maps_flutter-2.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "google_maps_flutter_android",
+      "rootUri": "file:///Users/simakyo/.pub-cache/hosted/pub.dev/google_maps_flutter_android-2.5.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
+      "name": "google_maps_flutter_ios",
+      "rootUri": "file:///Users/simakyo/.pub-cache/hosted/pub.dev/google_maps_flutter_ios-2.3.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
+      "name": "google_maps_flutter_platform_interface",
+      "rootUri": "file:///Users/simakyo/.pub-cache/hosted/pub.dev/google_maps_flutter_platform_interface-2.4.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
+      "name": "google_maps_flutter_web",
+      "rootUri": "file:///Users/simakyo/.pub-cache/hosted/pub.dev/google_maps_flutter_web-0.5.4+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
       "name": "graphs",
       "rootUri": "file:///Users/simakyo/.pub-cache/hosted/pub.dev/graphs-2.3.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
+    },
+    {
+      "name": "html",
+      "rootUri": "file:///Users/simakyo/.pub-cache/hosted/pub.dev/html-0.15.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
     },
     {
       "name": "http",
@@ -110,10 +188,22 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "intl",
+      "rootUri": "file:///Users/simakyo/.pub-cache/hosted/pub.dev/intl-0.18.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "js",
       "rootUri": "file:///Users/simakyo/.pub-cache/hosted/pub.dev/js-0.6.5",
       "packageUri": "lib/",
       "languageVersion": "2.16"
+    },
+    {
+      "name": "js_wrapping",
+      "rootUri": "file:///Users/simakyo/.pub-cache/hosted/pub.dev/js_wrapping-0.7.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "lints",
@@ -206,6 +296,12 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "sanitize_html",
+      "rootUri": "file:///Users/simakyo/.pub-cache/hosted/pub.dev/sanitize_html-2.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "sky_engine",
       "rootUri": "file:///Users/simakyo/development/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
@@ -226,6 +322,12 @@
     {
       "name": "stream_channel",
       "rootUri": "file:///Users/simakyo/.pub-cache/hosted/pub.dev/stream_channel-2.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
+      "name": "stream_transform",
+      "rootUri": "file:///Users/simakyo/.pub-cache/hosted/pub.dev/stream_transform-2.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
@@ -260,6 +362,12 @@
       "languageVersion": "2.14"
     },
     {
+      "name": "widget_to_marker",
+      "rootUri": "file:///Users/simakyo/.pub-cache/hosted/pub.dev/widget_to_marker-1.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
       "name": "win32",
       "rootUri": "file:///Users/simakyo/.pub-cache/hosted/pub.dev/win32-4.1.4",
       "packageUri": "lib/",
@@ -278,7 +386,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2024-06-03T10:31:37.657968Z",
+  "generated": "2024-06-04T10:41:53.888071Z",
   "generator": "pub",
   "generatorVersion": "2.19.4"
 }

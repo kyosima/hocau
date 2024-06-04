@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hocau/widget/custom_text.dart';
-import 'package:hocau/widget/input.dart';
 
 import '../../unit.dart';
+import '../../widget/custom_text.dart';
+import '../../widget/input.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class EnterPasswordPage extends StatelessWidget {
+  const EnterPasswordPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class LoginPage extends StatelessWidget {
               ),
               Center(
                 child: CustomText(
-                  text: 'Đăng nhập',
+                  text: 'Nhập mã xác thực',
                   color: pColor,
                   fontWeight: FontWeight.bold,
                   fontSize: 19,
@@ -35,31 +35,31 @@ class LoginPage extends StatelessWidget {
                 height: 30,
               ),
               CustomText(
-                text: 'Số điện thoại',
+                text: 'Mã OTP',
                 color: Colors.black54,
               ),
               SizedBox(
                 height: 15,
               ),
               Input(
-                hintText: '0335828491',
+                hintText: 'Nhập mã tại đây',
               ),
               SizedBox(
                 height: 30,
               ),
               CustomText(
                 text:
-                    'Chúng tôi sẽ gửi mật mã dùng một lần đến tin nhắn điện thoại của bạn',
+                    '''Lưu ý: Vui lòng không cung cấp mã này OTP cho bất kỳ ai! Nếu không thấy tin nhắn hãy thử lại sau vài phút''',
               ),
               SizedBox(
                 height: 30,
               ),
               ElevatedButton(
                 onPressed: () {
-                  Get.toNamed('/enterPassword');
+                  Get.toNamed('/createAccount');
                 },
                 child: CustomText(
-                  text: 'Nhận OTP',
+                  text: 'Đăng nhập',
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),

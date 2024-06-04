@@ -1,9 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="mevivu.com.hocau">
    <application
+
         android:label="hocau"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+       <meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyAa16zeevmMLGFlxkyQp8-FYPLfIGamiDo"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

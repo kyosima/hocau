@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hocau/widget/custom_text.dart';
-import 'package:hocau/widget/input.dart';
 
 import '../../unit.dart';
+import '../../widget/custom_text.dart';
+import '../../widget/input.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class CreateAccountPage extends StatelessWidget {
+  const CreateAccountPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +21,11 @@ class LoginPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                height: kH * 0.25,
+                height: kH * 0.2,
               ),
               Center(
                 child: CustomText(
-                  text: 'Đăng nhập',
+                  text: 'Chào bạn mới!',
                   color: pColor,
                   fontWeight: FontWeight.bold,
                   fontSize: 19,
@@ -35,31 +35,64 @@ class LoginPage extends StatelessWidget {
                 height: 30,
               ),
               CustomText(
-                text: 'Số điện thoại',
+                text: 'Họ và tên',
                 color: Colors.black54,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Input(
+                hintText: 'Nhập họ tên',
               ),
               SizedBox(
                 height: 15,
               ),
-              Input(
-                hintText: '0335828491',
+              CustomText(
+                text: 'Nickname',
+                color: Colors.black54,
               ),
               SizedBox(
-                height: 30,
+                height: 10,
+              ),
+              Input(
+                hintText: 'Đặt nickname',
+              ),
+              SizedBox(
+                height: 15,
               ),
               CustomText(
-                text:
-                    'Chúng tôi sẽ gửi mật mã dùng một lần đến tin nhắn điện thoại của bạn',
+                text: 'Số điện thoại',
+                color: Colors.black54,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Input(
+                hintText: 'Nhập số điện thoại',
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              CustomText(
+                text: 'Người giới thiệu',
+                color: Colors.black54,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Input(
+                hintText: 'Cần thủ huyền thoại',
+                enable: false,
               ),
               SizedBox(
                 height: 30,
               ),
               ElevatedButton(
                 onPressed: () {
-                  Get.toNamed('/enterPassword');
+                  Get.toNamed('/dashboard');
                 },
                 child: CustomText(
-                  text: 'Nhận OTP',
+                  text: 'Tiếp tục',
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
