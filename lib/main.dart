@@ -4,8 +4,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hocau/unit.dart';
 import 'package:hocau/view/auth/create_account_page.dart';
 import 'package:hocau/view/auth/enter_password.dart';
+import 'package:hocau/view/auth/login_page.dart';
 import 'package:hocau/view/blog/blog_detail_page.dart';
 import 'package:hocau/view/dashboard/dashboard_page.dart';
+import 'package:hocau/view/lake/lake_child_detail_page.dart';
 import 'package:hocau/view/lake/lake_detail_page.dart';
 import 'package:hocau/view/notification/notificaiton_page.dart';
 
@@ -74,6 +76,10 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/lakeDetail',
           page: () => LakeDetailPage(),
+        ),
+        GetPage(
+          name: '/lakeChild',
+          page: () => LakeChildDetailPage(),
         ),
       ],
     );

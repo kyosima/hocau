@@ -22,11 +22,11 @@ class HomePage extends StatelessWidget {
               children: [
                 Container(
                   color: pColor,
-                  height: kH * 0.23,
+                  height: kH * 0.25,
                 ),
                 Positioned(
                     right: 0,
-                    bottom: 0,
+                    bottom: 10,
                     child: Image.asset(
                       'assets/images/bg.png',
                       width: kW,
@@ -43,7 +43,7 @@ class HomePage extends StatelessWidget {
                               children: [
                                 Image.asset(
                                   'assets/images/user.png',
-                                  width: 55,
+                                  width: 50,
                                 ),
                                 SizedBox(
                                   width: 8,
@@ -274,7 +274,7 @@ class HomePage extends StatelessWidget {
                                               children: [
                                                 Image.asset(
                                                   'assets/images/fish.png',
-                                                  width: 20,
+                                                  width: 18,
                                                 ),
                                                 SizedBox(
                                                   width: 6,
@@ -282,6 +282,7 @@ class HomePage extends StatelessWidget {
                                                 CustomText(
                                                   text: '3 hồ',
                                                   color: sColor,
+                                                  fontSize: 13,
                                                 )
                                               ],
                                             ),
@@ -301,7 +302,7 @@ class HomePage extends StatelessWidget {
                                               children: [
                                                 Image.asset(
                                                   'assets/images/fish.png',
-                                                  width: 20,
+                                                  width: 18,
                                                 ),
                                                 SizedBox(
                                                   width: 6,
@@ -309,6 +310,7 @@ class HomePage extends StatelessWidget {
                                                 CustomText(
                                                   text: 'Ăn trưa',
                                                   color: sColor,
+                                                  fontSize: 13,
                                                 )
                                               ],
                                             ),
@@ -328,7 +330,7 @@ class HomePage extends StatelessWidget {
                                               children: [
                                                 Image.asset(
                                                   'assets/images/fish.png',
-                                                  width: 20,
+                                                  width: 18,
                                                 ),
                                                 SizedBox(
                                                   width: 6,
@@ -336,6 +338,7 @@ class HomePage extends StatelessWidget {
                                                 CustomText(
                                                   text: 'Ăn tối',
                                                   color: sColor,
+                                                  fontSize: 13,
                                                 )
                                               ],
                                             ),
@@ -355,7 +358,7 @@ class HomePage extends StatelessWidget {
                                               children: [
                                                 Image.asset(
                                                   'assets/images/fish.png',
-                                                  width: 20,
+                                                  width: 18,
                                                 ),
                                                 SizedBox(
                                                   width: 6,
@@ -363,6 +366,7 @@ class HomePage extends StatelessWidget {
                                                 CustomText(
                                                   text: 'Bãi giữ xe oto',
                                                   color: sColor,
+                                                  fontSize: 13,
                                                 )
                                               ],
                                             ),
@@ -379,7 +383,7 @@ class HomePage extends StatelessWidget {
                             height: 10,
                           ),
                           SizedBox(
-                            height: kH * 0.15,
+                            height: kH * 0.167,
                             child: ListView.separated(
                               itemCount: 4,
                               shrinkWrap: true,
@@ -627,7 +631,7 @@ class HomePage extends StatelessWidget {
                                               children: [
                                                 Image.asset(
                                                   'assets/images/fish.png',
-                                                  width: 20,
+                                                  width: 18,
                                                 ),
                                                 SizedBox(
                                                   width: 6,
@@ -635,6 +639,7 @@ class HomePage extends StatelessWidget {
                                                 CustomText(
                                                   text: '3 hồ',
                                                   color: sColor,
+                                                  fontSize: 13,
                                                 )
                                               ],
                                             ),
@@ -654,7 +659,7 @@ class HomePage extends StatelessWidget {
                                               children: [
                                                 Image.asset(
                                                   'assets/images/fish.png',
-                                                  width: 20,
+                                                  width: 18,
                                                 ),
                                                 SizedBox(
                                                   width: 6,
@@ -662,6 +667,7 @@ class HomePage extends StatelessWidget {
                                                 CustomText(
                                                   text: 'Ăn trưa',
                                                   color: sColor,
+                                                  fontSize: 13,
                                                 )
                                               ],
                                             ),
@@ -681,7 +687,7 @@ class HomePage extends StatelessWidget {
                                               children: [
                                                 Image.asset(
                                                   'assets/images/fish.png',
-                                                  width: 20,
+                                                  width: 18,
                                                 ),
                                                 SizedBox(
                                                   width: 6,
@@ -689,6 +695,7 @@ class HomePage extends StatelessWidget {
                                                 CustomText(
                                                   text: 'Ăn tối',
                                                   color: sColor,
+                                                  fontSize: 13,
                                                 )
                                               ],
                                             ),
@@ -708,7 +715,7 @@ class HomePage extends StatelessWidget {
                                               children: [
                                                 Image.asset(
                                                   'assets/images/fish.png',
-                                                  width: 20,
+                                                  width: 18,
                                                 ),
                                                 SizedBox(
                                                   width: 6,
@@ -716,6 +723,7 @@ class HomePage extends StatelessWidget {
                                                 CustomText(
                                                   text: 'Bãi giữ xe oto',
                                                   color: sColor,
+                                                  fontSize: 13,
                                                 )
                                               ],
                                             ),
@@ -732,7 +740,7 @@ class HomePage extends StatelessWidget {
                             height: 10,
                           ),
                           SizedBox(
-                            height: kH * 0.15,
+                            height: kH * 0.167,
                             child: ListView.separated(
                               itemCount: 4,
                               shrinkWrap: true,

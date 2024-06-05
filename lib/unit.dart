@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 const pColor = Color(0xff0B894C);
 const sColor = Color(0xffF97316);
+const tColor = Color(0xff7C2D12);
 final baseShimmer = Colors.grey.shade300;
 const highLightShimmer = Colors.white;
 
@@ -15,8 +16,8 @@ List<BoxShadow> boxShadow = [
 ];
 const gColor = LinearGradient(
   colors: [
-    pColor,
-    sColor,
+    Color(0xffFF9900),
+    Color(0xffF5C037),
   ],
   begin: Alignment.topLeft,
   end: Alignment.bottomRight,
