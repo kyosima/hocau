@@ -154,7 +154,9 @@ class _LakeNearMePageState extends State<LakeNearMePage> {
           mainAxisSize: MainAxisSize.min,
           children: [
             ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.toNamed('/lakeChild');
+                },
                 child: CustomText(
                   text: 'Đặt lịch',
                   fontWeight: FontWeight.bold,

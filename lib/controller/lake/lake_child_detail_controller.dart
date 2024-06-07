@@ -1,5 +1,4 @@
-import 'dart:ui';
-
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LakeChildBinding implements Bindings {
@@ -12,4 +11,19 @@ class LakeChildBinding implements Bindings {
 
 class LakeChildController extends GetxController {
   final gColor = Color(0xffFFBA09).obs;
+
+  final name = 'Suất 4 tiếng + 1 tiếng (7h-12h)'.obs;
+  final icon = Icon(
+    Icons.brightness_5_outlined,
+    color: Color(0xffFFBA09),
+  ).obs;
+  final pick = [].obs;
+
+  void pickSeat(seat) {
+    if (pick.value.contains(seat)) {
+      pick.value.remove(seat);
+    } else {
+      pick.value.add(seat);
+    }
+  }
 }

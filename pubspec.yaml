@@ -80,6 +80,10 @@ flutter:
     - assets/images/new.png
     - assets/images/mark.png
     - assets/images/hoca.png
+    - assets/images/lake.png
+    - assets/images/sfish.png
+    - assets/images/hcv.png
+    - assets/images/city.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

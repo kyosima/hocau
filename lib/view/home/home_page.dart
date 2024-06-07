@@ -19,18 +19,19 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: [
             Stack(
+              alignment: Alignment.center,
               children: [
                 Container(
                   color: pColor,
-                  height: kH * 0.25,
+                  height: kH * 0.26,
                 ),
                 Positioned(
-                    right: 0,
-                    bottom: 10,
-                    child: Image.asset(
-                      'assets/images/bg.png',
-                      width: kW,
-                    )),
+                  bottom: 10,
+                  child: Image.asset(
+                    'assets/images/bg.png',
+                    width: kW,
+                  ),
+                ),
                 SafeArea(
                   child: Padding(
                     padding: EdgeInsets.all(kW * 0.05),
@@ -129,13 +130,14 @@ class HomePage extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: EdgeInsets.all(kW * 0.05),
+              padding: EdgeInsets.only(
+                  left: kW * 0.05, right: kW * 0.05, top: 15, bottom: 25),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ImageSlideshow(
                     width: double.infinity,
-                    height: kH * 0.21,
+                    height: kH * 0.23,
                     initialPage: 0,
                     indicatorColor: Colors.deepOrange,
                     indicatorRadius: 4,
@@ -383,90 +385,97 @@ class HomePage extends StatelessWidget {
                             height: 10,
                           ),
                           SizedBox(
-                            height: kH * 0.167,
+                            height: kH * 0.17,
                             child: ListView.separated(
                               itemCount: 4,
                               shrinkWrap: true,
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (context, index) {
-                                return Container(
-                                  decoration: BoxDecoration(
-                                    border:
-                                        Border.all(color: pColor, width: 0.5),
-                                    borderRadius: BorderRadius.circular(21),
-                                  ),
+                                return InkWell(
+                                  onTap: () {
+                                    Get.toNamed('/lakeChild');
+                                  },
                                   child: Container(
                                     decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      gradient: LinearGradient(
-                                          stops: [0.02, 0],
-                                          colors: [pColor, Colors.white]),
+                                      border:
+                                          Border.all(color: pColor, width: 0.5),
+                                      borderRadius: BorderRadius.circular(21),
                                     ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(13),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          CustomText(
-                                            text: 'Hồ số 1 chuyên cá Chép',
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          SizedBox(
-                                            height: 8,
-                                          ),
-                                          Row(
-                                            children: [
-                                              CustomText(
-                                                text: 'Loại cá :',
-                                                color: Colors.black54,
-                                              ),
-                                              SizedBox(
-                                                width: 10,
-                                              ),
-                                              CustomText(
-                                                text: 'Cá chép',
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: 8,
-                                          ),
-                                          Row(
-                                            children: [
-                                              CustomText(
-                                                text: 'Giờ hoạt động :',
-                                                color: Colors.black54,
-                                              ),
-                                              SizedBox(
-                                                width: 10,
-                                              ),
-                                              CustomText(
-                                                text: '7h - 17h',
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: 8,
-                                          ),
-                                          Row(
-                                            children: [
-                                              CustomText(
-                                                text: 'Điểm HCV :',
-                                                color: Colors.black54,
-                                              ),
-                                              SizedBox(
-                                                width: 10,
-                                              ),
-                                              CustomText(
-                                                text: '99',
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ],
-                                          ),
-                                        ],
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        gradient: LinearGradient(
+                                            stops: [0.02, 0],
+                                            colors: [pColor, Colors.white]),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(13),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            CustomText(
+                                              text: 'Hồ số 1 chuyên cá Chép',
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                            SizedBox(
+                                              height: 8,
+                                            ),
+                                            Row(
+                                              children: [
+                                                CustomText(
+                                                  text: 'Loại cá :',
+                                                  color: Colors.black54,
+                                                ),
+                                                SizedBox(
+                                                  width: 10,
+                                                ),
+                                                CustomText(
+                                                  text: 'Cá chép',
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: 8,
+                                            ),
+                                            Row(
+                                              children: [
+                                                CustomText(
+                                                  text: 'Giờ hoạt động :',
+                                                  color: Colors.black54,
+                                                ),
+                                                SizedBox(
+                                                  width: 10,
+                                                ),
+                                                CustomText(
+                                                  text: '7h - 17h',
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: 8,
+                                            ),
+                                            Row(
+                                              children: [
+                                                CustomText(
+                                                  text: 'Điểm HCV :',
+                                                  color: Colors.black54,
+                                                ),
+                                                SizedBox(
+                                                  width: 10,
+                                                ),
+                                                CustomText(
+                                                  text: '99',
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -740,90 +749,95 @@ class HomePage extends StatelessWidget {
                             height: 10,
                           ),
                           SizedBox(
-                            height: kH * 0.167,
+                            height: kH * 0.17,
                             child: ListView.separated(
                               itemCount: 4,
                               shrinkWrap: true,
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (context, index) {
-                                return Container(
-                                  decoration: BoxDecoration(
-                                    border:
-                                        Border.all(color: pColor, width: 0.5),
-                                    borderRadius: BorderRadius.circular(21),
-                                  ),
+                                return InkWell(
+                                  onTap: () {
+                                    Get.toNamed('/lakeChild');
+                                  },
                                   child: Container(
                                     decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      gradient: LinearGradient(
-                                          stops: [0.02, 0],
-                                          colors: [pColor, Colors.white]),
+                                      border:
+                                          Border.all(color: pColor, width: 0.5),
+                                      borderRadius: BorderRadius.circular(21),
                                     ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(13),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          CustomText(
-                                            text: 'Hồ số 1 chuyên cá Chép',
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          SizedBox(
-                                            height: 8,
-                                          ),
-                                          Row(
-                                            children: [
-                                              CustomText(
-                                                text: 'Loại cá :',
-                                                color: Colors.black54,
-                                              ),
-                                              SizedBox(
-                                                width: 10,
-                                              ),
-                                              CustomText(
-                                                text: 'Cá chép',
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: 8,
-                                          ),
-                                          Row(
-                                            children: [
-                                              CustomText(
-                                                text: 'Giờ hoạt động :',
-                                                color: Colors.black54,
-                                              ),
-                                              SizedBox(
-                                                width: 10,
-                                              ),
-                                              CustomText(
-                                                text: '7h - 17h',
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: 8,
-                                          ),
-                                          Row(
-                                            children: [
-                                              CustomText(
-                                                text: 'Điểm HCV :',
-                                                color: Colors.black54,
-                                              ),
-                                              SizedBox(
-                                                width: 10,
-                                              ),
-                                              CustomText(
-                                                text: '99',
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ],
-                                          ),
-                                        ],
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        gradient: LinearGradient(
+                                            stops: [0.02, 0],
+                                            colors: [pColor, Colors.white]),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(13),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            CustomText(
+                                              text: 'Hồ số 1 chuyên cá Chép',
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                            SizedBox(
+                                              height: 8,
+                                            ),
+                                            Row(
+                                              children: [
+                                                CustomText(
+                                                  text: 'Loại cá :',
+                                                  color: Colors.black54,
+                                                ),
+                                                SizedBox(
+                                                  width: 10,
+                                                ),
+                                                CustomText(
+                                                  text: 'Cá chép',
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: 8,
+                                            ),
+                                            Row(
+                                              children: [
+                                                CustomText(
+                                                  text: 'Giờ hoạt động :',
+                                                  color: Colors.black54,
+                                                ),
+                                                SizedBox(
+                                                  width: 10,
+                                                ),
+                                                CustomText(
+                                                  text: '7h - 17h',
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: 8,
+                                            ),
+                                            Row(
+                                              children: [
+                                                CustomText(
+                                                  text: 'Điểm HCV :',
+                                                  color: Colors.black54,
+                                                ),
+                                                SizedBox(
+                                                  width: 10,
+                                                ),
+                                                CustomText(
+                                                  text: '99',
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
