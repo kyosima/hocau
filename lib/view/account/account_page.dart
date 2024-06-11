@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:hocau/view/account/edit_account_page.dart';
+import 'package:hocau/view/account/myrating_page.dart';
 import 'package:hocau/widget/custom_text.dart';
 
 import '../../unit.dart';
@@ -111,6 +114,9 @@ class AccountPage extends StatelessWidget {
                     ButtonAccount(
                       title: 'Thông tin cá nhân',
                       icon: Icons.info_outline,
+                      onTap: () {
+                        Get.to(EditAccountPage());
+                      },
                     ),
                     SizedBox(
                       height: 15,
@@ -118,6 +124,9 @@ class AccountPage extends StatelessWidget {
                     ButtonAccount(
                       title: 'Xếp loại của tôi',
                       icon: Icons.star_rate_outlined,
+                      onTap: () {
+                        Get.to(MyratingPage());
+                      },
                     ),
                     SizedBox(
                       height: 15,
