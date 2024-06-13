@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../unit.dart';
 
 class Input extends StatelessWidget {
+  String? initialValue;
   String? hintText;
   String? labelText;
   Icon? icon;
@@ -10,11 +11,13 @@ class Input extends StatelessWidget {
   Function()? onPressed;
   TextInputType? inputType;
   bool? enable;
+  bool? obscureText;
   Color? borderColorInput;
   Color? bgColor;
   Color? hintColor;
   Input(
       {Key? key,
+      this.initialValue,
       this.hintText,
       this.sIcon,
       this.hintColor,
@@ -22,6 +25,7 @@ class Input extends StatelessWidget {
       this.icon,
       this.inputType,
       this.enable,
+      this.obscureText,
       this.labelText,
       this.borderColorInput = Colors.grey,
       this.bgColor = Colors.white})
@@ -34,6 +38,8 @@ class Input extends StatelessWidget {
     return SizedBox(
       height: kW < 450 ? 48 : 60,
       child: TextFormField(
+        obscureText: obscureText ?? false,
+        initialValue: initialValue,
         enabled: enable,
         keyboardType: inputType,
         style: TextStyle(fontSize: kW < 450 ? 15.5 : 20.5),
@@ -51,7 +57,7 @@ class Input extends StatelessWidget {
               color: hintColor,
             ),
             prefixIcon: icon,
-            suffixIcon: InkWell(onTap: onPressed, child: sIcon),
+            suffixIcon: sIcon != null ? InkWell(onTap: onPressed, child: sIcon) : null,
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(
                 color: pColor,

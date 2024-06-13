@@ -5,11 +5,13 @@ import 'package:hocau/unit.dart';
 import 'package:hocau/view/auth/create_account_page.dart';
 import 'package:hocau/view/auth/enter_password.dart';
 import 'package:hocau/view/blog/blog_detail_page.dart';
+import 'package:hocau/view/booking/booking_detail_page.dart';
 import 'package:hocau/view/checkout/checkout_page.dart';
 import 'package:hocau/view/dashboard/dashboard_page.dart';
 import 'package:hocau/view/lake/lake_child_detail_page.dart';
 import 'package:hocau/view/lake/lake_detail_page.dart';
 import 'package:hocau/view/notification/notificaiton_page.dart';
+import 'package:hocau/view/wallet/wallet_page.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -84,6 +86,14 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/checkout',
           page: () => CheckOutPage(),
+        ),
+        GetPage(
+          name: '/bookingDetail',
+          page: () => BookingDetailPage(),
+        ),
+        GetPage(
+          name: '/walletPage',
+          page: () => WalletPage(),
         ),
       ],
     );

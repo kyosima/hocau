@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hocau/view/account/booking_history_page.dart';
+import 'package:hocau/view/account/change_password_page.dart';
 import 'package:hocau/view/account/edit_account_page.dart';
 import 'package:hocau/view/account/myrating_page.dart';
 import 'package:hocau/widget/custom_text.dart';
@@ -134,6 +136,9 @@ class AccountPage extends StatelessWidget {
                     ButtonAccount(
                       title: 'Lịch sử đặt lịch',
                       icon: Icons.history,
+                      onTap: () {
+                        Get.to(BookingHistoryPage());
+                      },
                     ),
                     SizedBox(
                       height: 15,
@@ -148,6 +153,7 @@ class AccountPage extends StatelessWidget {
                     ButtonAccount(
                       title: 'Số dư',
                       icon: Icons.monetization_on_outlined,
+                      onTap: () => Get.toNamed('/walletPage'),
                     ),
                     SizedBox(
                       height: 15,
@@ -155,6 +161,64 @@ class AccountPage extends StatelessWidget {
                     ButtonAccount(
                       title: 'Liên hệ',
                       icon: Icons.contact_support_outlined,
+                      onTap: () {
+                        showModalBottomSheet<void>(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return SizedBox(
+                                height: 250,
+                                child: Padding(
+                                  padding: EdgeInsets.all(kW * 0.05),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          CustomText(
+                                            text: 'Liên hệ với chúng tôi',
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18,
+                                          ),
+                                          IconButton(
+                                              onPressed: () {
+                                                Get.back();
+                                              },
+                                              icon: Icon(Icons.close))
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Image.asset('assets/images/zalo.png'),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          CustomText(
+                                            text: 'Liên hệ qua Zalo',
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 15,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Image.asset(
+                                              'assets/images/phone.png'),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          CustomText(
+                                            text: 'Liên hệ qua Hotline',
+                                          )
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ));
+                          },
+                        );
+                      },
                     ),
                     SizedBox(
                       height: 15,
@@ -162,6 +226,9 @@ class AccountPage extends StatelessWidget {
                     ButtonAccount(
                       title: 'Đổi mật khẩu',
                       icon: Icons.password,
+                      onTap: () {
+                        Get.to(ChangePasswordPage());
+                      },
                     ),
                     SizedBox(
                       height: 15,
