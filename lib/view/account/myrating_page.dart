@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+import 'package:hocau/controller/rating/rating_controller.dart';
 import 'package:hocau/unit.dart';
 import 'package:hocau/widget/custom_text.dart';
 
@@ -12,6 +14,7 @@ class MyratingPage extends StatefulWidget {
 }
 
 class _MyratingPageState extends State<MyratingPage> {
+  final controller = Get.put(RatingController());
   @override
   Widget build(BuildContext context) {
     final kW = MediaQuery.of(context).size.width;

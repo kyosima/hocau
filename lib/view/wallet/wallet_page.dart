@@ -1,6 +1,8 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hocau/unit.dart';
+import 'package:hocau/view/wallet/recharge_page.dart';
+import 'package:hocau/view/wallet/transaction_page.dart';
 import 'package:hocau/widget/custom_card.dart';
 import 'package:hocau/widget/custom_text.dart';
 
@@ -12,6 +14,7 @@ class WalletPage extends StatelessWidget {
     final kW = MediaQuery.of(context).size.width;
     final kH = MediaQuery.of(context).size.height;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: BackButton(
           color: Colors.white,
@@ -107,7 +110,9 @@ class WalletPage extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                         TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.to(TransactionPage());
+                            },
                             child: CustomText(
                               text: 'Xem thêm',
                               color: Colors.green,
@@ -127,8 +132,18 @@ class WalletPage extends StatelessWidget {
               child: ElevatedButton(
                 child: CustomText(
                   text: 'Rút tiền -',
+                  color: Colors.white,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  showModalBottomSheet(
+                    isScrollControlled: true,
+                    isDismissible: false,
+                    context: context,
+                    builder: (BuildContext context) {
+                      return RechargePage();
+                    },
+                  );
+                },
               ),
             ),
           )

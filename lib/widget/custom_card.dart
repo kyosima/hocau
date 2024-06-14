@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:hocau/unit.dart';
 import 'package:hocau/view/booking/booking_detail_page.dart';
+import 'package:hocau/view/wallet/transaction_detail_page.dart';
 import 'package:hocau/widget/custom_text.dart';
 
 class CustomCard extends StatefulWidget {
@@ -248,37 +249,42 @@ class _CustomCardWalletState extends State<CustomCardWallet> {
       itemCount: 10,
       scrollDirection: Axis.vertical,
       itemBuilder: (context, index) {
-        return Container(
-          color: index.isOdd ? highLightShimmer : Colors.blue.shade100,
-          padding: EdgeInsets.all(kW * 0.05),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  CustomText(
-                    text: '22:07 | Thanh Toán',
-                    color: Colors.grey.shade500,
-                  ),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Icon(
-                    size: 15,
-                    Icons.circle,
-                    color: index.isOdd ? Colors.red : Colors.green.shade300,
-                  )
-                ],
-              ),
-              Row(
-                children: [
-                  CustomText(
-                    text: '-300.000 đ',
-                  ),
-                  Icon(Icons.arrow_right_alt)
-                ],
-              )
-            ],
+        return InkWell(
+          onTap: () {
+            Get.to(TransactionDetailPage());
+          },
+          child: Container(
+            color: index.isOdd ? highLightShimmer : Colors.blue.shade100,
+            padding: EdgeInsets.all(kW * 0.05),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    CustomText(
+                      text: '22:07 | Thanh Toán',
+                      color: Colors.grey.shade500,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Icon(
+                      size: 15,
+                      Icons.circle,
+                      color: index.isOdd ? Colors.red : Colors.green.shade300,
+                    )
+                  ],
+                ),
+                Row(
+                  children: [
+                    CustomText(
+                      text: '-300.000 đ',
+                    ),
+                    Icon(Icons.arrow_right_alt)
+                  ],
+                )
+              ],
+            ),
           ),
         );
       },

@@ -12,6 +12,7 @@ class Input extends StatelessWidget {
   TextInputType? inputType;
   bool? enable;
   bool? obscureText;
+  bool? autofocus;
   Color? borderColorInput;
   Color? bgColor;
   Color? hintColor;
@@ -26,6 +27,7 @@ class Input extends StatelessWidget {
       this.inputType,
       this.enable,
       this.obscureText,
+      this.autofocus = false,
       this.labelText,
       this.borderColorInput = Colors.grey,
       this.bgColor = Colors.white})
@@ -38,6 +40,7 @@ class Input extends StatelessWidget {
     return SizedBox(
       height: kW < 450 ? 48 : 60,
       child: TextFormField(
+        autofocus: autofocus!,
         obscureText: obscureText ?? false,
         initialValue: initialValue,
         enabled: enable,
@@ -57,7 +60,8 @@ class Input extends StatelessWidget {
               color: hintColor,
             ),
             prefixIcon: icon,
-            suffixIcon: sIcon != null ? InkWell(onTap: onPressed, child: sIcon) : null,
+            suffixIcon:
+                sIcon != null ? InkWell(onTap: onPressed, child: sIcon) : null,
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(
                 color: pColor,
