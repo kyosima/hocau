@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hocau/unit.dart';
 import 'package:hocau/view/wallet/recharge_page.dart';
+import 'package:hocau/view/wallet/withdraw_page.dart';
 import 'package:hocau/view/wallet/transaction_page.dart';
 import 'package:hocau/widget/custom_card.dart';
 import 'package:hocau/widget/custom_text.dart';
@@ -78,7 +79,9 @@ class WalletPage extends StatelessWidget {
                         minimumSize: Size.fromHeight(60),
                         backgroundColor: highLightShimmer,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(RechargePage());
+                      },
                       child: CustomText(
                         text: 'Nạp tiền +',
                         color: Colors.green,
@@ -140,7 +143,7 @@ class WalletPage extends StatelessWidget {
                     isDismissible: false,
                     context: context,
                     builder: (BuildContext context) {
-                      return RechargePage();
+                      return WithdrawPage();
                     },
                   );
                 },
