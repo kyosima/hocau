@@ -25,7 +25,8 @@ class BookingDetailPage extends StatelessWidget {
         title: CustomText(
           text: 'Chi tiết lịch sử đặt lịch',
           color: Colors.white,
-          fontWeight: FontWeight.bold,
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
         ),
       ),
       body: SafeArea(
@@ -109,7 +110,7 @@ class BookingDetailPage extends StatelessWidget {
                         Container(
                           padding: EdgeInsets.all(5),
                           decoration: BoxDecoration(
-                              color: Colors.green.shade100,
+                              color: Color(0xFFA7F3D0),
                               borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(10),
                                   bottomRight: Radius.circular(10))),
@@ -117,11 +118,15 @@ class BookingDetailPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(
-                                Icons.tty_sharp,
+                                Icons.support,
+                                size: 20,
+                                color: Color(0xff064E3B),
                               ),
                               CustomText(
                                 text: 'Liên hệ hỗ trợ',
                                 fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: Color(0xff064E3B),
                               ),
                             ],
                           ),
@@ -457,7 +462,7 @@ class BookingDetailPage extends StatelessWidget {
                           Row(
                             children: [
                               Icon(
-                                Icons.timer,
+                                Icons.timer_sharp,
                                 color: Colors.grey,
                               ),
                               SizedBox(
@@ -468,7 +473,7 @@ class BookingDetailPage extends StatelessWidget {
                                   text:
                                       'Đơn hàng của bạn sẽ được giữ trong 60 phút, vui lòng thanh toán trong thời gian này.',
                                   color: Colors.grey,
-                                  fontSize: 14,
+                                  fontSize: 12,
                                 ),
                               )
                             ],

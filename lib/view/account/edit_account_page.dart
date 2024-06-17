@@ -31,7 +31,8 @@ class _EditAccountPageState extends State<EditAccountPage> {
         ),
         title: CustomText(
           text: 'Chỉnh sửa thông tin cá nhân',
-          fontWeight: FontWeight.bold,
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
           color: Colors.white,
         ),
       ),
@@ -45,21 +46,47 @@ class _EditAccountPageState extends State<EditAccountPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Center(
-                    child: CircleAvatar(
-                      radius: 46,
-                      backgroundColor: Color(0xffECFDF5).withOpacity(0.3),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8), // Border radius
-                        child: ClipOval(
-                          child: Image.asset(
-                            'assets/images/user.png',
-                            width: 70,
+                  Stack(children: [
+                    Center(
+                      child: CircleAvatar(
+                        radius: 46,
+                        backgroundColor: Color(0xffECFDF5).withOpacity(0.3),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8), // Border radius
+                          child: ClipOval(
+                            child: Image.asset(
+                              'assets/images/user.png',
+                              width: 81,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
+                    Center(
+                      child: InkWell(
+                        onTap: () {},
+                        child: Container(
+                          padding: EdgeInsets.only(bottom: 5),
+                          width: 89,
+                          height: 90,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(46)),
+                            color: Colors.black.withOpacity(0.4),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Icon(
+                                Icons.camera_alt_outlined,
+                                color: Colors.white,
+                                size: 20,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
+                  ]),
                   SizedBox(
                     height: 15,
                   ),

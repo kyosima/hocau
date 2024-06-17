@@ -23,7 +23,8 @@ class WalletPage extends StatelessWidget {
         centerTitle: true,
         title: CustomText(
           text: 'Số dư của tôi',
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w600,
+          fontSize: 20,
           color: Colors.white,
         ),
       ),
@@ -37,10 +38,11 @@ class WalletPage extends StatelessWidget {
               width: kW,
               padding: EdgeInsets.all(kW * 0.05),
               decoration: BoxDecoration(
+                color: Color(0xff0B894C),
                 borderRadius: BorderRadius.all(Radius.circular(10)),
                 image: new DecorationImage(
                   fit: BoxFit.fill,
-                  image: new ExactAssetImage('assets/images/bg2.png'),
+                  image: new ExactAssetImage('assets/images/bgwallet.png'),
                 ),
               ),
               child: Column(
@@ -52,7 +54,8 @@ class WalletPage extends StatelessWidget {
                       CustomText(
                         text: 'Tổng số dư hiện tại ',
                         color: Colors.white,
-                        fontSize: 20,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
                       ),
                       InkWell(
                         onTap: () {},
@@ -66,10 +69,23 @@ class WalletPage extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-                  CustomText(
-                    text: '@ 50.000.000',
-                    color: Colors.white,
-                    fontSize: 20,
+                  Row(
+                    children: [
+                      CustomText(
+                        text: 'đ ',
+                        color: Colors.white,
+                        fontSize: 32,
+                        textDecoration: TextDecoration.underline,
+                        colorDecortion: Colors.white,
+                        fontWeight: FontWeight.w700,
+                      ),
+                      CustomText(
+                        text: '50.000.000',
+                        color: Colors.white,
+                        fontSize: 32,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ],
                   ),
                   SizedBox(
                     height: 20,
@@ -84,8 +100,9 @@ class WalletPage extends StatelessWidget {
                       },
                       child: CustomText(
                         text: 'Nạp tiền +',
-                        color: Colors.green,
+                        color: Color(0xFF0B894C),
                         fontWeight: FontWeight.bold,
+                        fontSize: 16,
                       ))
                 ],
               ),
@@ -111,6 +128,7 @@ class WalletPage extends StatelessWidget {
                         CustomText(
                           text: 'Giao dịch gần đây',
                           fontWeight: FontWeight.bold,
+                          fontSize: 16,
                         ),
                         TextButton(
                             onPressed: () {
@@ -136,6 +154,7 @@ class WalletPage extends StatelessWidget {
                 child: CustomText(
                   text: 'Rút tiền -',
                   color: Colors.white,
+                  fontWeight: FontWeight.w600,
                 ),
                 onPressed: () {
                   showModalBottomSheet(

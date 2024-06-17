@@ -41,15 +41,25 @@ class _TransactionPageState extends State<TransactionPage> {
               indicatorColor: Colors.green,
               tabs: [
                 Tab(
-                  text: 'Thanh toán',
+                  child: CustomText(
+                    text: 'Thanh toán',
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14,
+                    color: Color(0xff0B894C),
+                  ),
                 ),
                 Tab(
-                  text: 'Nạp/Rút',
+                  child: CustomText(
+                    text: 'Nạp/Rút',
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14,
+                    color: Color(0xff0B894C),
+                  ),
                 )
               ],
             ),
             Container(
-              color: baseShimmer,
+              color: Color(0xFFF3F4F6),
               padding:
                   EdgeInsets.symmetric(horizontal: kW * 0.05, vertical: 10),
               child: Row(

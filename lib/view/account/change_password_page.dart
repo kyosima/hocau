@@ -27,7 +27,8 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
         title: CustomText(
           text: 'Đổi mật khẩu',
           color: Colors.white,
-          fontWeight: FontWeight.bold,
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
         ),
         centerTitle: true,
       ),
@@ -41,7 +42,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                 Center(
                     child: CustomText(
                   text: 'CUNG CẤP THÔNG TIN SAU ĐỂ ĐỔI MẬT KHẨU',
-                  fontSize: 20,
+                  fontSize: 18,
                   maxLine: 2,
                   textAlign: TextAlign.center,
                 )),
@@ -51,12 +52,12 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CustomText(text: 'Mật khẩu cũ', fontSize: 12),
+                    CustomText(text: 'Mật khẩu cũ', fontSize: 14),
                     SizedBox(
                       width: 50,
                     ),
                     SizedBox(
-                      width: 200,
+                      width: 175,
                       child: Input(
                         obscureText: obscureOldPass,
                         inputType: TextInputType.text,
@@ -76,12 +77,12 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CustomText(text: 'Mật khẩu Mới', fontSize: 12),
+                    CustomText(text: 'Mật khẩu Mới', fontSize: 14),
                     SizedBox(
                       width: 50,
                     ),
                     SizedBox(
-                      width: 200,
+                      width: 175,
                       child: Input(
                         obscureText: obscureNewPass,
                         inputType: TextInputType.text,
@@ -103,7 +104,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   children: [
                     CustomText(
                       text: 'Xác nhận mật khẩu mới',
-                      fontSize: 12,
+                      fontSize: 14,
                     ),
                     SizedBox(
                       width: 15,
@@ -132,6 +133,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                     child: CustomText(
                       text: 'Đổi mật khẩu',
                       color: Colors.white,
+                      fontSize: 14,
                       fontWeight: FontWeight.bold,
                     ))
               ],

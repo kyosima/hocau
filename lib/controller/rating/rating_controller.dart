@@ -11,8 +11,16 @@ class RatingController extends GetxController {
     Color(0xff111827),
     Color(0xfffba612),
   ].obs;
+  final bgRating = [
+    'assets/images/bgrating.png',
+    'assets/images/bgrating2.png',
+    'assets/images/bgrating3.png',
+    'assets/images/bgrating4.png',
+    'assets/images/bgrating5.png',
+    'assets/images/bgrating6.png',
+  ].obs;
 
-  void rtColor(value) {
+  void rtValue(value) {
     rating.value = value;
   }
 }

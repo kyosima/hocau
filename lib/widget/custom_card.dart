@@ -119,7 +119,7 @@ class _CustomCardState extends State<CustomCard> {
                               children: [
                                 Text(
                                   '#${widget.nameLake}',
-                                  style: TextStyle(color: Colors.green),
+                                  style: TextStyle(color: Color(0xFF0B894C)),
                                 ),
                                 Container(
                                   padding: EdgeInsets.all(5),
@@ -148,16 +148,17 @@ class _CustomCardState extends State<CustomCard> {
                             ),
                             Row(
                               children: [
-                                Icon(Icons.timer),
+                                Icon(Icons.access_time_filled),
                                 CustomText(
                                   text: 'Đặt lúc: ',
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w700,
                                   fontSize: 12,
                                 ),
                                 CustomText(
                                   text: '10:00 | 09/04/2024',
                                   fontSize: 12,
-                                  color: Colors.black45,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black,
                                 )
                               ],
                             ),
@@ -166,16 +167,16 @@ class _CustomCardState extends State<CustomCard> {
                             ),
                             Row(
                               children: [
-                                Icon(Icons.anchor_outlined),
+                                Icon(Icons.phishing),
                                 CustomText(
                                   text: 'Suất câu: ',
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w700,
                                   fontSize: 12,
                                 ),
                                 CustomText(
                                   text: 'Buổi sáng (7h - 12h)',
                                   fontSize: 12,
-                                  color: Colors.black45,
+                                  color: Colors.black,
                                 )
                               ],
                             ),
@@ -184,16 +185,16 @@ class _CustomCardState extends State<CustomCard> {
                             ),
                             Row(
                               children: [
-                                Icon(Icons.date_range),
+                                Icon(Icons.calendar_month),
                                 CustomText(
                                   text: 'Ngày câu: ',
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w700,
                                   fontSize: 12,
                                 ),
                                 CustomText(
                                   text: '10:00 | 10/04/2024',
                                   fontSize: 12,
-                                  color: Colors.black45,
+                                  color: Colors.black,
                                 )
                               ],
                             ),
@@ -206,7 +207,8 @@ class _CustomCardState extends State<CustomCard> {
                                 child: CustomText(
                                   text: 'Thanh toán',
                                   color: Colors.white,
-                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
                                 )),
                             SizedBox(
                               height: 10,
@@ -254,7 +256,7 @@ class _CustomCardWalletState extends State<CustomCardWallet> {
             Get.to(TransactionDetailPage());
           },
           child: Container(
-            color: index.isOdd ? highLightShimmer : Colors.blue.shade100,
+            color: index.isOdd ? highLightShimmer : Color(0xFFb2d6c7),
             padding: EdgeInsets.all(kW * 0.05),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -264,6 +266,7 @@ class _CustomCardWalletState extends State<CustomCardWallet> {
                     CustomText(
                       text: '22:07 | Thanh Toán',
                       color: Colors.grey.shade500,
+                      fontSize: 17,
                     ),
                     SizedBox(
                       width: 5,
@@ -279,8 +282,9 @@ class _CustomCardWalletState extends State<CustomCardWallet> {
                   children: [
                     CustomText(
                       text: '-300.000 đ',
+                      fontWeight: FontWeight.w700,
                     ),
-                    Icon(Icons.arrow_right_alt)
+                    Icon(Icons.arrow_forward)
                   ],
                 )
               ],

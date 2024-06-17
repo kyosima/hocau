@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:hocau/unit.dart';
 import 'package:hocau/view/report/rating_lake_page.dart';
 import 'package:hocau/widget/custom_text.dart';
 import 'package:hocau/widget/input.dart';
@@ -27,23 +28,32 @@ class _PopupAlertState extends State<PopupAlert> {
   @override
   Widget build(BuildContext context) {
     final kW = MediaQuery.of(context).size.width;
-    final kH = MediaQuery.of(context).size.height;
     return Center(
       child: SingleChildScrollView(
         child: AlertDialog(
+          actionsPadding: EdgeInsets.all(10),
           content: Column(
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
+              InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Icon(
+                  Icons.close,
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
               CustomText(
                 text:
                     'Bạn có hài lòng với trải nghiệm câu cá ở hồ câu số 1 không ?',
                 maxLine: 3,
-                fontSize: 17,
+                fontSize: 18,
                 textAlign: TextAlign.center,
-                fontWeight: FontWeight.bold,
-              ),
-              SizedBox(
-                height: 10,
+                fontWeight: FontWeight.w600,
               ),
               isUnsatisfied == true
                   ? Column(
@@ -95,16 +105,16 @@ class _PopupAlertState extends State<PopupAlert> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Container(
-                        width: kW * 0.3,
+                        width: kW * 0.35,
                         decoration: BoxDecoration(
-                            color: Colors.green,
+                            color: Colors.white,
+                            border: Border.all(),
                             borderRadius:
                                 BorderRadius.all(Radius.circular(10))),
                         child: TextButton(
                           child: CustomText(
                             text: 'Chọn lại',
-                            color: Colors.white,
-                            fontSize: 12,
+                            fontSize: 14,
                           ),
                           onPressed: () {
                             setState(() {});
@@ -116,7 +126,7 @@ class _PopupAlertState extends State<PopupAlert> {
                         ),
                       ),
                       Container(
-                        width: kW * 0.3,
+                        width: kW * 0.35,
                         decoration: BoxDecoration(
                             color: Colors.red,
                             borderRadius:
@@ -125,7 +135,7 @@ class _PopupAlertState extends State<PopupAlert> {
                           child: CustomText(
                             text: 'Gửi phản hồi',
                             color: Colors.white,
-                            fontSize: 12,
+                            fontSize: 14,
                           ),
                           onPressed: () {
                             Navigator.pop(context);
@@ -141,7 +151,7 @@ class _PopupAlertState extends State<PopupAlert> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Container(
-                        width: kW * 0.3,
+                        width: kW * 0.35,
                         decoration: BoxDecoration(
                             color: Colors.green,
                             borderRadius:
@@ -150,7 +160,7 @@ class _PopupAlertState extends State<PopupAlert> {
                           child: CustomText(
                             text: 'Có',
                             color: Colors.white,
-                            fontSize: 12,
+                            fontSize: 14,
                           ),
                           onPressed: () {
                             Navigator.pop(context);
@@ -162,7 +172,7 @@ class _PopupAlertState extends State<PopupAlert> {
                         ),
                       ),
                       Container(
-                        width: kW * 0.3,
+                        width: kW * 0.35,
                         decoration: BoxDecoration(
                             color: Colors.red,
                             borderRadius:
@@ -171,7 +181,7 @@ class _PopupAlertState extends State<PopupAlert> {
                           child: CustomText(
                             text: 'Không',
                             color: Colors.white,
-                            fontSize: 12,
+                            fontSize: 14,
                           ),
                           onPressed: () {
                             setState(() {

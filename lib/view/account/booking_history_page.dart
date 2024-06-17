@@ -21,7 +21,8 @@ class _BookingHistoryPageState extends State<BookingHistoryPage> {
         title: CustomText(
           text: 'Lịch sử đặt lịch',
           color: Colors.white,
-          fontWeight: FontWeight.bold,
+          fontSize: 20,
+          fontWeight: FontWeight.w700,
         ),
         centerTitle: true,
       ),
@@ -33,28 +34,53 @@ class _BookingHistoryPageState extends State<BookingHistoryPage> {
           child: Column(
             children: [
               TabBar(
+                  padding: EdgeInsets.all(10),
                   tabAlignment: TabAlignment.start,
-                  labelColor: Colors.green,
-                  indicatorColor: Colors.green,
+                  labelColor: Color(0xFF0B894C),
+                  indicatorColor: Color(0xFF0B894C),
                   isScrollable: true,
                   tabs: [
                     Tab(
-                      text: 'Tất cả',
+                      child: CustomText(
+                        text: 'Tất cả',
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xFF0B894C),
+                      ),
                     ),
                     Tab(
-                      text: 'Chưa thanh toán',
+                      child: CustomText(
+                        text: 'Chưa thanh toán',
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xFF0B894C),
+                      ),
                     ),
                     Tab(
-                      text: 'Đã đặt',
+                      child: CustomText(
+                        text: 'Đã Đặt',
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xFF0B894C),
+                      ),
                     ),
                     Tab(
-                      text: 'Đã hủy',
+                      child: CustomText(
+                        text: 'Đã hủy',
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xFF0B894C),
+                      ),
                     ),
                     Tab(
-                      text: 'Đang câu',
+                      child: CustomText(
+                        text: 'Đang câu',
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xFF0B894C),
+                      ),
                     ),
                     Tab(
-                      text: 'Hoàn Thành',
+                      child: CustomText(
+                        text: 'Hoàn thành',
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xFF0B894C),
+                      ),
                     ),
                   ]),
               Flexible(

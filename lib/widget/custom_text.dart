@@ -5,6 +5,7 @@ class CustomText extends StatelessWidget {
   String? text;
   double? fontSize;
   Color? color;
+  Color? colorDecortion;
   FontWeight? fontWeight;
   TextDecoration? textDecoration;
   TextAlign? textAlign;
@@ -15,6 +16,7 @@ class CustomText extends StatelessWidget {
     this.text,
     this.fontWeight = FontWeight.w100,
     this.color = Colors.black87,
+    this.colorDecortion = Colors.black87,
     this.fontSize = 15.5,
     this.textDecoration,
     this.textAlign,
@@ -32,6 +34,7 @@ class CustomText extends StatelessWidget {
       maxLines: maxLine,
       style: TextStyle(
         color: color,
+        decorationColor: colorDecortion,
         fontSize: kW <= 450 ? fontSize : fontSize! + 5,
         fontWeight: fontWeight,
         decoration: textDecoration,

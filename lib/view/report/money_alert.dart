@@ -14,10 +14,14 @@ class MoneyAlert extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.verified_outlined),
+          Icon(Icons.check_circle_outline),
+          SizedBox(
+            height: 10,
+          ),
           CustomText(
             text: title,
             fontWeight: FontWeight.bold,
+            fontSize: 18,
           ),
           SizedBox(
             height: 10,
@@ -39,7 +43,7 @@ class MoneyAlert extends StatelessWidget {
               child: CustomText(
                 text: 'Quay lại',
                 color: Colors.blue,
-                fontSize: 12,
+                fontSize: 14,
               ),
               onPressed: () {
                 Navigator.pop(context);
@@ -49,7 +53,7 @@ class MoneyAlert extends StatelessWidget {
               child: CustomText(
                 text: 'Xem chi tiết',
                 color: Colors.blue,
-                fontSize: 12,
+                fontSize: 14,
               ),
               onPressed: () {
                 Navigator.pop(context);

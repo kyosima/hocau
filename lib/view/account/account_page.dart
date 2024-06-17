@@ -16,7 +16,6 @@ class AccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(RatingController());
-
     final kW = MediaQuery.of(context).size.width;
     final kH = MediaQuery.of(context).size.height;
     return Obx(() => Scaffold(
@@ -96,20 +95,38 @@ class AccountPage extends StatelessWidget {
                         SizedBox(
                           height: 15,
                         ),
-                        Container(
-                          width: kW,
-                          height: kW < 450 ? 50 : 60,
-                          decoration: BoxDecoration(
-                              color: controller
-                                  .ratingColor[controller.rating.value],
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Padding(
-                            padding: const EdgeInsets.all(13.0),
-                            child: Center(
-                              child: CustomText(
-                                text: 'Chuẩn cần thủ',
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xff001F42),
+                        InkWell(
+                          onTap: () {
+                            if (controller.rating.value == 5) {
+                              controller.rtValue(0);
+                            } else {
+                              controller.rtValue(controller.rating.value + 1);
+                              ;
+                            }
+                          },
+                          child: Container(
+                            width: kW,
+                            height: kW < 450 ? 50 : 60,
+                            decoration: BoxDecoration(
+                                border: controller.rating.value == 0
+                                    ? Border.all()
+                                    : Border.all(
+                                        color: controller.ratingColor[
+                                            controller.rating.value]),
+                                color: controller
+                                    .ratingColor[controller.rating.value],
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Padding(
+                              padding: const EdgeInsets.all(13.0),
+                              child: Center(
+                                child: CustomText(
+                                  text: 'Chuẩn cần thủ',
+                                  fontWeight: FontWeight.bold,
+                                  color: [0, 1, 5]
+                                          .contains(controller.rating.value)
+                                      ? Color(0xff001F42)
+                                      : Colors.white,
+                                ),
                               ),
                             ),
                           ),
@@ -209,8 +226,19 @@ class AccountPage extends StatelessWidget {
                                           ),
                                           Row(
                                             children: [
-                                              Image.asset(
-                                                  'assets/images/phone.png'),
+                                              Container(
+                                                  padding: EdgeInsets.all(5),
+                                                  decoration: BoxDecoration(
+                                                      color: Color(0xff0B894C),
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  10))),
+                                                  child: Icon(
+                                                    Icons.phone,
+                                                    color: Colors.white,
+                                                    size: 40,
+                                                  )),
                                               SizedBox(
                                                 width: 10,
                                               ),

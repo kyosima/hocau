@@ -90,6 +90,13 @@ flutter:
     - assets/images/zalo.png
     - assets/images/phone.png
     - assets/images/bg2.png
+    - assets/images/bgwallet.png
+    - assets/images/bgrating.png
+    - assets/images/bgrating2.png
+    - assets/images/bgrating3.png
+    - assets/images/bgrating4.png
+    - assets/images/bgrating5.png
+    - assets/images/bgrating6.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

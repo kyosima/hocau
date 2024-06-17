@@ -29,8 +29,9 @@ class _RatingLakePageState extends State<RatingLakePage> {
         centerTitle: true,
         title: CustomText(
           text: 'Đánh giá hồ câu',
+          fontSize: 20,
           color: Colors.white,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w600,
         ),
       ),
       body: SafeArea(
@@ -122,7 +123,7 @@ class _RatingLakePageState extends State<RatingLakePage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(
-                                Icons.camera_alt,
+                                Icons.camera_alt_outlined,
                                 color: Colors.white,
                               ),
                               SizedBox(
@@ -130,6 +131,8 @@ class _RatingLakePageState extends State<RatingLakePage> {
                               ),
                               CustomText(
                                 text: 'Chọn ảnh',
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
                                 color: Colors.white,
                               ),
                             ],
@@ -188,6 +191,8 @@ class _RatingLakePageState extends State<RatingLakePage> {
             onPressed: () {},
             child: CustomText(
               text: 'Gửi đánh giá',
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
               color: Colors.white,
             )),
       ),

@@ -23,8 +23,8 @@ class _RechargePageState extends State<RechargePage> {
         title: CustomText(
           text: 'Nạp tiền',
           color: Colors.white,
-          fontWeight: FontWeight.bold,
-          fontSize: 18,
+          fontWeight: FontWeight.w600,
+          fontSize: 20,
         ),
         centerTitle: true,
       ),
@@ -48,7 +48,7 @@ class _RechargePageState extends State<RechargePage> {
             ),
             CustomText(
               text: 'THANH BITCOIN',
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w700,
               fontSize: 20,
             ),
             SizedBox(
@@ -75,14 +75,14 @@ class _RechargePageState extends State<RechargePage> {
             ),
             CustomText(
               text: '(NICKNAME)(+)"NAPTIENBOOKING"',
-              color: Colors.green,
+              color: Color(0xFF0B894C),
               fontSize: 18,
             ),
             SizedBox(
               height: 10,
             ),
             CustomText(
-              text: 'Cung cấp hình ảnh chuyển khoảng:',
+              text: 'Cung cấp hình ảnh chuyển khoản:',
               fontWeight: FontWeight.bold,
               fontSize: 18,
             ),
@@ -92,7 +92,7 @@ class _RechargePageState extends State<RechargePage> {
             InkWell(
               onTap: () {},
               child: Container(
-                padding: EdgeInsets.all(5),
+                padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                     border: Border.all()),
@@ -100,6 +100,9 @@ class _RechargePageState extends State<RechargePage> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(Icons.autorenew_rounded),
+                    SizedBox(
+                      width: 5,
+                    ),
                     CustomText(
                       text: 'Ảnh khác',
                     )
@@ -123,6 +126,8 @@ class _RechargePageState extends State<RechargePage> {
                 child: CustomText(
                   text: 'Xác nhận chuyển khoản',
                   color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
                 ))
           ],
         ),
