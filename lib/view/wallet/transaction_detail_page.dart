@@ -31,8 +31,8 @@ class TransactionDetailPage extends StatelessWidget {
             stops: [0.1, 0.4, 0.5, 0.9],
             colors: [
               pColor,
-              Colors.green.withOpacity(0.4),
-              Colors.blue.withOpacity(0.2),
+              Colors.green.withOpacity(0.5),
+              Colors.blue.withOpacity(0.3),
               Colors.blue.withOpacity(0.05),
             ],
           ),
@@ -52,14 +52,25 @@ class TransactionDetailPage extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Icon(Icons.money),
+                          Image.asset('assets/images/deposit.png'),
+                          SizedBox(
+                            width: 20,
+                          ),
                           Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               CustomText(
                                 text: 'NẠP TIỀN',
+                                fontSize: 18,
+                                color: Colors.grey,
+                              ),
+                              SizedBox(
+                                height: 10,
                               ),
                               CustomText(
                                 text: '+ 5.000.000 đ',
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
                               ),
                             ],
                           )
@@ -152,6 +163,7 @@ class TransactionDetailPage extends StatelessWidget {
                           CustomText(
                             text: '12388765',
                             fontWeight: FontWeight.bold,
+                            fontSize: 18,
                           ),
                           IconButton(onPressed: () {}, icon: Icon(Icons.copy)),
                         ],
@@ -177,18 +189,20 @@ class TransactionDetailPage extends StatelessWidget {
                 ),
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue.shade200),
+                        backgroundColor: Color(0xFFC1DEFF)),
                     onPressed: () {},
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(
-                          Icons.tty_sharp,
+                          Icons.support,
                           color: Colors.blue.shade800,
                         ),
                         CustomText(
                           text: 'Liên hệ hỗ trợ',
                           color: Colors.blue.shade800,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
                         )
                       ],
                     ))
