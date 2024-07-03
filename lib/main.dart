@@ -7,6 +7,9 @@ import 'package:hocau/view/auth/enter_password.dart';
 import 'package:hocau/view/blog/blog_detail_page.dart';
 import 'package:hocau/view/checkout/checkout_page.dart';
 import 'package:hocau/view/dashboard/dashboard_page.dart';
+import 'package:hocau/view/event/create_event_page.dart';
+import 'package:hocau/view/event/event_detail_page.dart';
+import 'package:hocau/view/event/event_page.dart';
 import 'package:hocau/view/lake/lake_child_detail_page.dart';
 import 'package:hocau/view/lake/lake_detail_page.dart';
 import 'package:hocau/view/notification/notificaiton_page.dart';
@@ -84,6 +87,17 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/checkout',
           page: () => CheckOutPage(),
+        ),
+        GetPage(
+          name: '/eventPage',
+          page: () => EventPage(),
+        ),
+        GetPage(
+          name: '/createEvent',
+          page: () => CreateEvent(),
+        ),
+        GetPage(name: '/detailEvent',
+        page: () => EventDetailPage()
         ),
       ],
     );

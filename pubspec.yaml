@@ -84,6 +84,13 @@ flutter:
     - assets/images/sfish.png
     - assets/images/hcv.png
     - assets/images/city.png
+    - assets/images/headimageevent.png
+    - assets/images/search-normal.png
+    - assets/images/fishing_men.png
+    - assets/images/status.png
+    - assets/images/location.png
+    - assets/images/upload.png
+    - assets/images/vnd.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
