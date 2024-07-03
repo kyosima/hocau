@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:hocau/view/account/account_page.dart';
 import 'package:hocau/view/booking/booking_page.dart';
+import 'package:hocau/view/event/event_page.dart';
 import 'package:hocau/view/home/home_page.dart';
 import 'package:hocau/view/lake/lake_near_me_page.dart';
 
@@ -18,6 +19,7 @@ class DashboardController extends GetxController {
   final pages = [
     HomePage(),
     LakeNearMePage(),
+    EventPage(),
     BookingPage(),
     AccountPage(),
   ];

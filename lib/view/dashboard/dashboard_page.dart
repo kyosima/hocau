@@ -30,6 +30,8 @@ class DashboardPage extends StatelessWidget {
               BottomNavigationBarItem(
                   icon: Icon(Icons.map_outlined), label: "Hồ gần đây"),
               BottomNavigationBarItem(
+                  icon: Icon(Icons.card_giftcard_outlined), label: "Sự kiện"),
+              BottomNavigationBarItem(
                   icon: Icon(Icons.calendar_today_outlined), label: "Đặt lịch"),
               BottomNavigationBarItem(
                   icon: Icon(Icons.account_circle_outlined),
