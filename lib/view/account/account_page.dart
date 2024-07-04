@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:hocau/widget/custom_text.dart';
 
 import '../../unit.dart';
 import '../../widget/button_account.dart';
+import '../referral/referral_link_page.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({Key? key}) : super(key: key);
@@ -129,9 +132,14 @@ class AccountPage extends StatelessWidget {
                     SizedBox(
                       height: 15,
                     ),
-                    ButtonAccount(
-                      title: 'Liên kết giới thiệu',
-                      icon: Icons.link,
+                    GestureDetector(
+                      onTap: () {
+                        Get.to(() => ReferralLinkPage());
+                      },
+                      child: ButtonAccount(
+                        title: 'Liên kết giới thiệu',
+                        icon: Icons.link,
+                      ),
                     ),
                     SizedBox(
                       height: 15,

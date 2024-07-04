@@ -10,9 +10,10 @@ import 'package:hocau/view/dashboard/dashboard_page.dart';
 import 'package:hocau/view/lake/lake_child_detail_page.dart';
 import 'package:hocau/view/lake/lake_detail_page.dart';
 import 'package:hocau/view/notification/notificaiton_page.dart';
+import 'package:hocau/view/referral/referral_link_page.dart';
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
     home: MyApp(),
   ));
@@ -85,6 +86,7 @@ class MyApp extends StatelessWidget {
           name: '/checkout',
           page: () => CheckOutPage(),
         ),
+        GetPage(name: '/referralLink', page: () => ReferralLinkPage()),
       ],
     );
   }
