@@ -18,13 +18,13 @@ class EventPage extends StatelessWidget {
     final List<Event> events = [
       Event(
         title: "Hồ câu Thanh Thong Thả - Tây Ninh",
-        location: "Hồ câu thong thả",
+        location: "Hồ câu Thanh Thong Thả",
         condition: "Có điều kiện",
         distribution: "10/100",
         description: "1 chiếc cần câu máy dòng SHIMANO WORLD SHAULA",
         dateRange: "16/06/2024 - 30/06/2024",
         imagePaths: [
-          'assets/images/hoca.png',
+          'assets/images/banner.png',
         ],
       ),
       Event(
@@ -35,7 +35,7 @@ class EventPage extends StatelessWidget {
         description: "1 chiếc cần câu máy dòng SHIMANO WORLD SHAULA",
         dateRange: "16/06/2024 - 30/06/2024",
         imagePaths: [
-          'assets/images/hoca.png',
+          'assets/images/banner.png',
         ],
       ),
       Event(
@@ -46,7 +46,7 @@ class EventPage extends StatelessWidget {
         description: "1 chiếc cần câu máy dòng SHIMANO WORLD SHAULA",
         dateRange: "16/06/2024 - 30/06/2024",
         imagePaths: [
-          'assets/images/hoca.png',
+          'assets/images/banner.png',
         ],
       ),
     ];
@@ -66,7 +66,7 @@ class EventPage extends StatelessWidget {
             },
           ),
           IconButton(
-            icon: Icon(Icons.qr_code),
+            icon: Icon(Icons.qr_code_outlined),
             color: Color.fromARGB(255, 255, 255, 255),
             onPressed: () {
               // Handle settings
@@ -156,153 +156,182 @@ class EventCard extends StatelessWidget {
       onTap: () {
         Get.toNamed('/event_details');
       },
-      child: Card(
-        elevation: 0,
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                event.title,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Stack(
+      child: Column(
+        children: [
+          Card(
+            elevation: 0,
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.asset(
-                      event.imagePaths[0],
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                      height: 200,
+                  Text(
+                    event.title,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          color: Colors.black45,
-                          child: Padding(
-                            padding: EdgeInsets.all(5),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Icon(
-                                  Icons.location_city_outlined,
-                                  color: Colors.white,
-                                ),
-                                SizedBox(width: 5),
-                                Text(
-                                  event.location,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w100,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                  SizedBox(height: 10),
+                  Stack(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
                         ),
-                        SizedBox(height: 5),
-                        Container(
-                          color: Colors.black45,
-                          child: Padding(
-                            padding: EdgeInsets.all(5),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Icon(
-                                  Icons.settings_accessibility_outlined,
-                                  color: Colors.white,
-                                ),
-                                SizedBox(width: 5),
-                                Text(
-                                  event.condition,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w100,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                        child: Image.asset(
+                          event.imagePaths[0],
+                          fit: BoxFit.cover,
+                          width: double.infinity,
+                          height: 200,
                         ),
-                        SizedBox(height: 10),
-                      ],
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    child: Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.fromLTRB(10, 5, 0, 10),
-                      color: Colors.black54,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Tham gia quét nhận mã',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(height: 5),
-                          Text(
-                            event.description,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                            ),
-                          ),
-                        ],
                       ),
+                      Positioned(
+                        top: 5,
+                        left: 5,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.black45,
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.all(5),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Icon(
+                                      Icons.location_on_outlined,
+                                      color: Colors.white,
+                                    ),
+                                    SizedBox(width: 5),
+                                    Text(
+                                      event.location,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w100,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 3),
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.black45,
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.all(5),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Icon(
+                                      Icons.settings_outlined,
+                                      color: Colors.white,
+                                    ),
+                                    SizedBox(width: 5),
+                                    Text(
+                                      event.condition,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w100,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                          ],
+                        ),
+                      ),
+                      Positioned(
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        child: Container(
+                          width: double.infinity,
+                          padding: EdgeInsets.fromLTRB(10, 5, 0, 10),
+                          color: Colors.black54,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Tham gia quét mã nhận quà',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              SizedBox(height: 5),
+                              Text(
+                                event.description,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(20),
+                        bottomRight: Radius.circular(20),
+                      ),
+                      color: Color.fromARGB(255, 11, 137, 76),
+                    ),
+                    width: double.infinity,
+                    padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.watch_later_outlined,
+                              color: Colors.white,
+                              size: 16,
+                            ),
+                            Text(
+                              " Từ: ${event.dateRange}",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                fontSize: 10,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Text(
+                          "Đã phát: ${event.distribution}",
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
-              Container(
-                width: double.infinity,
-                padding: EdgeInsets.all(5),
-                color: Color.fromARGB(255, 11, 137, 76),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Từ: ${event.dateRange}",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontSize: 10,
-                      ),
-                    ),
-                    Text(
-                      "Đã phát: ${event.distribution}",
-                      style: TextStyle(
-                        fontSize: 8,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
