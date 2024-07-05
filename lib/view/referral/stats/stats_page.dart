@@ -9,6 +9,7 @@ import '../../../data/ref_detail_member.dart';
 class MemberDetailScreen extends StatelessWidget {
   final Member member;
 
+
   const MemberDetailScreen({Key? key, required this.member}) : super(key: key);
 
   @override
@@ -167,7 +168,7 @@ class MemberDetailScreen extends StatelessWidget {
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
-                Get.to(() => StatsDetailPage());
+                Get.to(() => StatsDetailPage(pond: ponds[index], member: member));
               },
               child: CustomItemRef(pond: ponds[index]),
             );

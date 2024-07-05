@@ -1,9 +1,11 @@
 class FishingPond {
+  final String id;
   final String name;
   final List<OrderSummary> orderSummaries;
   final List<DetailedOrder> detailedOrders;
 
   FishingPond({
+    required this.id,
     required this.name,
     required this.orderSummaries,
     required this.detailedOrders,
@@ -54,6 +56,7 @@ class DetailedOrder {
 
 final List<FishingPond> sampleFishingPonds = [
   FishingPond(
+    id: "1",
     name: "Hồ Câu Thanh Thông Thả Tỉnh Tây Ninh",
     orderSummaries: [
       OrderSummary(
@@ -79,7 +82,9 @@ final List<FishingPond> sampleFishingPonds = [
       ),
     ],
   ),
+
   FishingPond(
+    id: "2",
     name: "Hồ Câu Hoàng Hải TP.Thủ Đức",
     orderSummaries: [
       OrderSummary(
@@ -95,14 +100,15 @@ final List<FishingPond> sampleFishingPonds = [
       DetailedOrder(
         pondName: "Hồ Câu Hoàng Hải TP.Thủ Đức",
         status: "Chờ thanh toán",
-        orderNumber: "Hồ câu số 2",
-        bookingTime: "11:00 | 10/04/2024",
-        fishingSlot: "Buổi chiều (13h - 18h)",
-        fishingDate: "13:00 | 02/02/2024",
+        orderNumber: "Hồ câu số 3",
+        bookingTime: "12:00 | 11/04/2024",
+        fishingSlot: "Buổi sáng (7h - 12h)",
+        fishingDate: "07:00 | 03/03/2024",
         pendingTransfer: "100.000đ",
         transferred: "100.000đ",
         totalAmount: "200.000đ",
       ),
     ],
   ),
+
 ];
