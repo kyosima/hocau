@@ -1,42 +1,47 @@
 class EventModel {
-  final String id;
-  final String title;
-  final String description;
-  final String location;
-  final String image;
-  final DateTime startDate;
-  final DateTime endDate;
-  final int price;
-  final int minPointsRequired;
-  final int minRankRequired;
-  final List<Prize> prizes;
-  final EventStatus status;
+   String id;
+   String title;
+   String description;
+   String location;
+   String image;
+   DateTime startDate;
+   DateTime endDate;
+   int ticket;
+   int totalTicket;
+   int price;
+   int minPointsRequired;
+   int minRankRequired;
+   List<Prize> prizes;
+   EventStatus status;
 
   EventModel({
-    required this.id,
-    required this.title,
-    required this.description,
-    required this.location,
-    required this.image,
-    required this.startDate,
-    required this.endDate,
-    required this.price,
-    required this.minPointsRequired,
-    required this.minRankRequired,
-    required this.prizes,
-    required this.status,
-  });
+    this.id ='',
+    this.title='',
+    this.image = '',
+    this.description = '',
+    this.location = '',
+    this.prizes = const [],
+    this.price = 0,
+    DateTime? startDate,
+    DateTime? endDate,
+    this.status = EventStatus.notStarted ,
+    this.ticket = 0,
+    this.totalTicket = 0,
+    this.minRankRequired = 0,
+    this.minPointsRequired = 0,
+  })  : startDate = startDate ?? DateTime.now(),
+        endDate = endDate ?? DateTime.now().add(Duration(days: 1));
 }
 
 class Prize {
-  final String id;
-  final String name;
-  final String description;
+   String id;
+   String name;
+   String description;
 
   Prize({
-    required this.id,
-    required this.name,
-    required this.description,
+     this.id ='',
+     this.name = '',
+     this.description='', 
   });
 }
 

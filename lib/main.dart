@@ -10,6 +10,7 @@ import 'package:hocau/view/dashboard/dashboard_page.dart';
 import 'package:hocau/view/event/create_event_page.dart';
 import 'package:hocau/view/event/event_detail_page.dart';
 import 'package:hocau/view/event/event_page.dart';
+import 'package:hocau/view/event/event_qr_code.dart';
 import 'package:hocau/view/lake/lake_child_detail_page.dart';
 import 'package:hocau/view/lake/lake_detail_page.dart';
 import 'package:hocau/view/notification/notificaiton_page.dart';
@@ -96,9 +97,14 @@ class MyApp extends StatelessWidget {
           name: '/createEvent',
           page: () => CreateEvent(),
         ),
-        GetPage(name: '/detailEvent',
-        page: () => EventDetailPage()
-        ),
+        GetPage(
+          name: '/detailEvent',
+          page: () => EventDetailPage()
+          ),
+        GetPage(
+          name: '/event_qr', 
+          page: () => EventQrCode()
+          ),
       ],
     );
   }

@@ -28,12 +28,6 @@ class _CreateEventState extends State<CreateEvent> {
             style: TextStyle(color: Colors.white),
           ),
         ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.qr_code),
-          ),
-        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -73,7 +67,7 @@ class _CreateEventState extends State<CreateEvent> {
 
             // information
             Container(
-              height: 550,
+              height: kW < 450 ? 600 : 550,
               decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -99,21 +93,29 @@ class _CreateEventState extends State<CreateEvent> {
                     TextFormField(
                       decoration: const InputDecoration(
                         labelText: 'Tiêu đề sự kiện',
-                        border: OutlineInputBorder(),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8))),
                       ),
                     ),
                     const SizedBox(height: 12),
                     TextFormField(
                       decoration: const InputDecoration(
                         labelText: 'Địa điểm tổ chức',
-                        border: OutlineInputBorder(),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8))),
                       ),
                     ),
                     const SizedBox(height: 12),
                     TextFormField(
-                      decoration: const InputDecoration(
-                        labelText: 'Tên phần quà',
-                        border: OutlineInputBorder(),
+                      minLines: 1,
+                      maxLines: 3,
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.all(15),
+                        labelText: ' Số lượng phần quà (không bắt buộc)',
+                        hintText:
+                            'Một chiêc Xe Container giá 100 triệu ( không giấy tờ xe)',
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8))),
                       ),
                     ),
                     const SizedBox(height: 12),
@@ -121,50 +123,57 @@ class _CreateEventState extends State<CreateEvent> {
                       decoration: const InputDecoration(
                         labelText: 'Giá trị phần quà',
                         suffixText: 'VNĐ',
-                        border: OutlineInputBorder(),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8))),
                       ),
                     ),
                     const SizedBox(height: 12),
-                    SizedBox(
-                      height: 94,
-                      child: TextFormField(
-                        minLines: 1,
-                        decoration: const InputDecoration(
-                          labelText: '   Số lượng phần quà (không bắt buộc)',
-                          border: OutlineInputBorder(),
-                          contentPadding: EdgeInsets.symmetric(vertical: 32),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        labelText: 'Số lượng phần quà',
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8))),
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Ngày bắt đầu',
+                        hintText: 'Ví dụ: 01/01/2011',
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8))),
+                        suffixIcon: IconButton(
+                          icon: Icon(Icons.date_range),
+                          onPressed: () {
+                            showDatePicker(
+                              context: context,
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime(2000),
+                              lastDate: DateTime(2025),
+                            ).then((selectedDate) {});
+                          },
                         ),
                       ),
                     ),
                     const SizedBox(height: 12),
-                    Input(
-                      labelText: 'Ngày bắt đầu',
-                      hintText:
-                          '${DateFormat('dd/MM/yyyy').format(DateTime.now())}',
-                      onPressed: () {
-                        showDatePicker(
-                          context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime(2000),
-                          lastDate: DateTime(2025),
-                        );
-                      },
-                      sIcon: Icon(Icons.date_range),
-                    ),
-                    const SizedBox(height: 12),
-                    Input(
-                      labelText: 'Ngày kết thúc',
-                      hintText:
-                          '${DateFormat('dd/MM/yyyy').format(DateTime.now())}',
-                      onPressed: () {
-                        showDatePicker(
-                          context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime(2000),
-                          lastDate: DateTime(2025),
-                        );
-                      },
-                      sIcon: Icon(Icons.date_range),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Ngày kết thúc',
+                        hintText: 'Ví dụ: 01/01/2011',
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8))),
+                        suffixIcon: IconButton(
+                          icon: Icon(Icons.date_range),
+                          onPressed: () {
+                            showDatePicker(
+                              context: context,
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime(2000),
+                              lastDate: DateTime(2025),
+                            ).then((selectedDate) {});
+                          },
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -179,7 +188,7 @@ class _CreateEventState extends State<CreateEvent> {
               ),
               height: switchValue
                   ? 200
-                  : 70, // 190-> 200 && 66 -> 70 : overflowed to the bottom
+                  : 75, // 190-> 200 && 66 -> 70 : overflowed to the bottom
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -203,7 +212,7 @@ class _CreateEventState extends State<CreateEvent> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 8),
                   if (switchValue) ...[
                     Row(
                       children: const [
@@ -263,10 +272,13 @@ class _CreateEventState extends State<CreateEvent> {
                 ],
               ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 6),
             // button create
-            SizedBox(
-                height: 64, // bo height thi luc scroll nhin k dc dep
+            Container(
+                padding: EdgeInsets.only(left: 16.0, right: 16.0),
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                ),
                 child: Padding(
                   padding: const EdgeInsets.all(12),
                   child: ElevatedButton(
