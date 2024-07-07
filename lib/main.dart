@@ -7,10 +7,11 @@ import 'package:hocau/view/auth/enter_password.dart';
 import 'package:hocau/view/blog/blog_detail_page.dart';
 import 'package:hocau/view/checkout/checkout_page.dart';
 import 'package:hocau/view/dashboard/dashboard_page.dart';
-import 'package:hocau/view/event/create_event_page.dart';
-import 'package:hocau/view/event/event_detail_page.dart';
-import 'package:hocau/view/event/event_page.dart';
-import 'package:hocau/view/event/event_qr_code.dart';
+import 'package:hocau/view/event/event_link/event_link_page.dart';
+import 'package:hocau/view/event/event_managers/create_event_page.dart';
+import 'package:hocau/view/event/event_managers/event_detail_page.dart';
+import 'package:hocau/view/event/event_managers/event_page.dart';
+import 'package:hocau/view/event/event_managers/event_qr_code.dart';
 import 'package:hocau/view/lake/lake_child_detail_page.dart';
 import 'package:hocau/view/lake/lake_detail_page.dart';
 import 'package:hocau/view/notification/notificaiton_page.dart';
@@ -105,6 +106,10 @@ class MyApp extends StatelessWidget {
           name: '/event_qr', 
           page: () => EventQrCode()
           ),
+        GetPage(
+          name: '/event_link', 
+          page: () => EventLinkPage()
+        ),
       ],
     );
   }

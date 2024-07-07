@@ -5,7 +5,7 @@ import 'package:hocau/controller/event/event_controller.dart';
 import 'package:hocau/widget/custom_text.dart';
 import 'package:intl/intl.dart';
 
-import '../../unit.dart';
+import '../../../unit.dart';
 
 class EventPage extends StatefulWidget {
   const EventPage({super.key});
@@ -18,36 +18,6 @@ class _EventPageState extends State<EventPage> {
   final EventController eventCtrl = Get.put(EventController());
   bool _isSearchExpanded = false;
   double _lastScrollOffset = 0;
-
-  Color getColor(String status) {
-    switch (status) {
-      case 'notStarted':
-        return const Color(0xff005699);
-      case 'inProgress':
-        return pColor;
-      case 'paused':
-        return const Color(0xffF98E02);
-      case 'canceled':
-        return const Color(0xffC6212C);
-      default: // finished
-        return const Color(0xff808080);
-    }
-  }
-
-  String changeToVN(String status) {
-    switch (status) {
-      case 'notStarted':
-        return 'Chưa diễn ra';
-      case 'inProgress':
-        return 'Đang diễn ra';
-      case 'paused':
-        return 'Tạm ngưng';
-      case 'canceled':
-        return 'Đã bị hủy';
-      default: // finished
-        return 'Đã kết thúc';
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +49,6 @@ class _EventPageState extends State<EventPage> {
           },
           child: CustomScrollView(
             slivers: <Widget>[
-              // sliver app bar
               SliverAppBar(
                 expandedHeight: 230,
                 backgroundColor:
@@ -121,20 +90,9 @@ class _EventPageState extends State<EventPage> {
                   title: !_isSearchExpanded
                       ? Stack(
                           children: [
-                            SizedBox(
-                              width: kW,
-                              child: ClipRRect(
-                                borderRadius: const BorderRadius.vertical(
-                                    bottom: Radius.circular(8)),
-                                child: Image.asset(
-                                  'assets/images/headimageevent.png',
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
+                            _headerImage(kW),
                             Positioned(
                               bottom: 16,
-                              // left: 16,
                               right: 16,
                               child: Container(
                                 height: 34,
@@ -164,7 +122,6 @@ class _EventPageState extends State<EventPage> {
                         )
                       : null,
                   centerTitle: true,
-                  //titlePadding: EdgeInsets.fromLTRB(16, 0, 16, 30),
                 ),
                 actions: [
                   !_isSearchExpanded
@@ -202,19 +159,7 @@ class _EventPageState extends State<EventPage> {
                             children: [
                               Stack(
                                 children: [
-                                  SizedBox(
-                                      height: 200,
-                                      width: double.infinity,
-                                      child: ClipRRect(
-                                        borderRadius:
-                                            const BorderRadius.vertical(
-                                                top: Radius.circular(8)),
-                                        child: Image.asset(
-                                          event.image,
-                                          fit: BoxFit.cover,
-                                          width: double.infinity,
-                                        ),
-                                      )),
+                                  _imageEventCard(event.image),
                                   Positioned(
                                     top: 0,
                                     left: 0,
@@ -227,53 +172,15 @@ class _EventPageState extends State<EventPage> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Container(
-                                              height: 21,
-                                              width: 96,
-                                              margin: EdgeInsets.fromLTRB(
-                                                  6, 6, 0, 0),
-                                              decoration: BoxDecoration(
-                                                color: Colors.black
-                                                    .withOpacity(0.25),
-                                                borderRadius:
-                                                    const BorderRadius.all(
-                                                        Radius.circular(16)),
-                                              ),
-                                              child: Padding(
-                                                padding: EdgeInsets.only(
-                                                    left: 4, top: 4, bottom: 4),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  children: [
-                                                    Icon(
-                                                      Icons.circle,
-                                                      size: 12,
-                                                      color: getColor(
-                                                          event.status.name),
-                                                    ),
-                                                    const SizedBox(width: 4),
-                                                    Text(
-                                                      changeToVN(
-                                                          event.status.name),
-                                                      style: const TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 10,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
+                                            _headerStatusEventCard(
+                                                event.status.name),
                                             Container(
                                               margin: const EdgeInsets.fromLTRB(
                                                   0, 6, 6, 0),
                                               child: Row(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.end,
-                                                children: buildActionButtons(
+                                                children: _buildActionButtons(
                                                     event.status.name, context),
                                               ),
                                             )
@@ -282,77 +189,15 @@ class _EventPageState extends State<EventPage> {
                                       ],
                                     ),
                                   ),
-                                  Positioned(
-                                    bottom: 0,
-                                    left: 0,
-                                    right: 0,
-                                    child: Container(
-                                      width: double.infinity,
-                                      height: 87,
-                                      padding: const EdgeInsets.fromLTRB(
-                                          12, 8, 12, 0),
-                                      color: Colors.black.withOpacity(0.5),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const Text(
-                                            'Tham gia quét nhận mã quà',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w700,
-                                            ),
-                                          ),
-                                          const SizedBox(height: 6),
-                                          Text(
-                                            event.description,
-                                            overflow: TextOverflow.clip,
-                                            maxLines: 3,
-                                            style: const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w300),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
+                                  _bodyEventCard(event.description),
                                 ],
                               ),
-                              Container(
-                                width: double.infinity,
-                                padding: const EdgeInsets.all(5),
-                                decoration: BoxDecoration(
-                                    color: getColor(event.status.name),
-                                    borderRadius: BorderRadius.vertical(
-                                        bottom: Radius.circular(8))),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(children: [
-                                      const Icon(Icons.lock_clock,
-                                          color: Colors.white),
-                                      Text(
-                                        "Từ: ${DateFormat('dd/MM/yyyy').format(event.startDate)} - ${DateFormat('dd/MM/yyyy').format(event.endDate)}",
-                                        style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,
-                                          fontSize: 10,
-                                        ),
-                                      ),
-                                    ]),
-                                    Text(
-                                      "Đã phát: ${event.ticket}/${event.totalTicket}",
-                                      style: const TextStyle(
-                                        fontSize: 10,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
+                              _footerEventCard(
+                                  event.status.name,
+                                  event.startDate,
+                                  event.endDate,
+                                  event.ticket,
+                                  event.totalTicket),
                             ],
                           ),
                         ),
@@ -364,29 +209,163 @@ class _EventPageState extends State<EventPage> {
             ],
           ),
         ),
-        floatingActionButton: SizedBox(
-            height: 56,
-            width: 56,
-            child: FittedBox(
-                child: ClipRect(
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  color: const Color(0xFFf98E02),
-                ),
-                child: IconButton(
-                  icon: const Icon(Icons.add),
-                  color: Colors.white,
-                  onPressed: () {
-                    Get.toNamed('/createEvent');
-                  },
-                ),
-              ),
-            ))));
+        floatingActionButton: _floatingActionButton());
   }
 }
 
-List<Widget> buildActionButtons(event, context) {
+Widget _headerImage(double kW) {
+  return SizedBox(
+    width: kW,
+    child: ClipRRect(
+      borderRadius: const BorderRadius.vertical(bottom: Radius.circular(8)),
+      child: Image.asset(
+        'assets/images/headimageevent.png',
+        fit: BoxFit.cover,
+      ),
+    ),
+  );
+}
+
+Widget _imageEventCard(String event) {
+  return SizedBox(
+      height: 200,
+      width: double.infinity,
+      child: ClipRRect(
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(8)),
+        child: Image.asset(
+          event,
+          fit: BoxFit.cover,
+          width: double.infinity,
+        ),
+      ));
+}
+
+Widget _headerStatusEventCard(String event) {
+  return Container(
+    height: 21,
+    width: 96,
+    margin: EdgeInsets.fromLTRB(6, 6, 0, 0),
+    decoration: BoxDecoration(
+      color: Colors.black.withOpacity(0.25),
+      borderRadius: const BorderRadius.all(Radius.circular(16)),
+    ),
+    child: Padding(
+      padding: EdgeInsets.only(left: 4, top: 4, bottom: 4),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Icon(
+            Icons.circle,
+            size: 12,
+            color: _getColorStatus(event),
+          ),
+          const SizedBox(width: 4),
+          Text(
+            _changeLangugeToVN(event),
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 10,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+Widget _bodyEventCard(String event) {
+  return Positioned(
+    bottom: 0,
+    left: 0,
+    right: 0,
+    child: Container(
+      width: double.infinity,
+      height: 87,
+      padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
+      color: Colors.black.withOpacity(0.5),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Tham gia quét nhận mã quà',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            event,
+            overflow: TextOverflow.clip,
+            maxLines: 3,
+            style: const TextStyle(
+                color: Colors.white, fontSize: 12, fontWeight: FontWeight.w300),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+Widget _footerEventCard(String status, DateTime startDate, DateTime endDate,
+    int ticket, int totalTicket) {
+  return Container(
+    width: double.infinity,
+    padding: const EdgeInsets.all(5),
+    decoration: BoxDecoration(
+        color: _getColorStatus(status),
+        borderRadius: BorderRadius.vertical(bottom: Radius.circular(8))),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(children: [
+          const Icon(Icons.lock_clock, color: Colors.white),
+          Text(
+            "Từ: ${DateFormat('dd/MM/yyyy').format(startDate)} - ${DateFormat('dd/MM/yyyy').format(endDate)}",
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+              fontSize: 10,
+            ),
+          ),
+        ]),
+        Text(
+          "Đã phát: $ticket / $totalTicket",
+          style: const TextStyle(
+            fontSize: 10,
+            color: Colors.white,
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+Widget _floatingActionButton() {
+  return SizedBox(
+      height: 56,
+      width: 56,
+      child: FittedBox(
+          child: ClipRect(
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            color: const Color(0xFFf98E02),
+          ),
+          child: IconButton(
+            icon: const Icon(Icons.add),
+            color: Colors.white,
+            onPressed: () {
+              Get.toNamed('/createEvent');
+            },
+          ),
+        ),
+      )));
+}
+
+List<Widget> _buildActionButtons(String event, BuildContext context) {
   List<Widget> buttons = [];
 
   Widget createButton(IconData icon, VoidCallback onPressed) {
@@ -596,4 +575,34 @@ void _showNewBottomSheet(double kW) {
       ),
     ),
   );
+}
+
+Color _getColorStatus(String status) {
+  switch (status) {
+    case 'notStarted':
+      return const Color(0xff005699);
+    case 'inProgress':
+      return pColor;
+    case 'paused':
+      return const Color(0xffF98E02);
+    case 'canceled':
+      return const Color(0xffC6212C);
+    default: // finished
+      return const Color(0xff808080);
+  }
+}
+
+String _changeLangugeToVN(String status) {
+  switch (status) {
+    case 'notStarted':
+      return 'Chưa diễn ra';
+    case 'inProgress':
+      return 'Đang diễn ra';
+    case 'paused':
+      return 'Tạm ngưng';
+    case 'canceled':
+      return 'Đã bị hủy';
+    default: // finished
+      return 'Đã kết thúc';
+  }
 }

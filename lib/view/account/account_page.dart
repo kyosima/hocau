@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hocau/view/event/event_page.dart';
+import 'package:hocau/view/event/event_managers/event_page.dart';
 import 'package:hocau/widget/custom_text.dart';
 
 import '../../unit.dart';
@@ -134,6 +134,7 @@ class AccountPage extends StatelessWidget {
                     ButtonAccount(
                       title: 'Liên kết giới thiệu',
                       icon: Icons.link,
+                      onTap: () => Get.toNamed('/event_link')
                     ),
                     SizedBox(
                       height: 15,
