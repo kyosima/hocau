@@ -3,7 +3,7 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:hocau/data/member.dart';
 
 import '../../../data/ref_detail_member.dart';
-import '../../../widget/CustomOrderDetailWidget.dart';
+import '../../../widget/custom_order_detail_widget.dart';
 
 class StatsDetailPage extends StatefulWidget {
   final Member member;

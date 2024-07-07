@@ -38,31 +38,32 @@ class CustomOrderDetailWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(10),
           child: Text(pond.name,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+              style:
+                  const TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
         ),
-        SizedBox(height: 3),
-        Padding(
-          padding: const EdgeInsets.all(10),
+        const SizedBox(height: 3),
+        const Padding(
+          padding: EdgeInsets.all(10),
           child: Text('Hồ câu số 1',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
         ),
         _buildDetailRow('Đặt lúc: ', order.bookingTime,
-            Icon(Icons.access_time_filled_outlined)),
+            const Icon(Icons.access_time_filled_outlined)),
         _buildDetailRow(
-            'Suất câu: ', order.fishingSlot, Icon(Icons.phishing_outlined)),
+            'Suất câu: ', order.fishingSlot, const Icon(Icons.phishing_outlined)),
         _buildDetailRow('Ngày câu: ', order.fishingDate,
-            Icon(Icons.calendar_today_outlined)),
+            const Icon(Icons.calendar_today_outlined)),
         _buildDetailRow('Chờ chuyển: ', order.pendingTransfer,
-            _buildColoredDot(Color(0xFFFAE20D))),
+            _buildColoredDot(const Color(0xFFFAE20D))),
         _buildDetailRow('Đã chuyển: ', order.transferred,
-            _buildColoredDot(Color(0xFF42EB18))),
+            _buildColoredDot(const Color(0xFF42EB18))),
         _buildDashedLine(context),
         Padding(
           padding: const EdgeInsets.all(10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 'TỔNG CỘNG: ',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -71,12 +72,12 @@ class CustomOrderDetailWidget extends StatelessWidget {
               ),
               Text(
                 totalFormatted,
-                style: TextStyle(
+                style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
                     color: Colors.black),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
             ],
           ),
         )
@@ -92,7 +93,7 @@ class CustomOrderDetailWidget extends StatelessWidget {
         color: color,
         shape: BoxShape.circle,
         border: Border.all(
-          color: Color(0xFFDDDDDD),
+          color: const Color(0xFFDDDDDD),
           width: 2.0,
         ),
       ),
@@ -106,17 +107,17 @@ class CustomOrderDetailWidget extends StatelessWidget {
         children: [
           if (leadingWidget != null) ...[
             IconTheme(
-              data: IconThemeData(size: 16),
+              data: const IconThemeData(size: 16),
               child: leadingWidget,
             ),
-            SizedBox(width: 8),
+            const SizedBox(width: 8),
           ],
-          Text(label, style: TextStyle(fontWeight: FontWeight.bold)),
+          Text(label, style: const TextStyle(fontWeight: FontWeight.bold)),
           Expanded(
               child: Text(
             value,
             textAlign: TextAlign.left,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.bold,
               color: Colors.black,
@@ -140,7 +141,7 @@ class DashedLineCustomPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     double dashWidth = 5.0, dashSpace = 5.0, startX = 0.0;
     final paint = Paint()
-      ..color = Color(0xFF808080)
+      ..color = const Color(0xFF808080)
       ..strokeWidth = 1;
     while (startX < size.width) {
       canvas.drawLine(Offset(startX, 0), Offset(startX + dashWidth, 0), paint);

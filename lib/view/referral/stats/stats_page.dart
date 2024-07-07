@@ -9,7 +9,6 @@ import '../../../data/ref_detail_member.dart';
 class MemberDetailScreen extends StatelessWidget {
   final Member member;
 
-
   const MemberDetailScreen({Key? key, required this.member}) : super(key: key);
 
   @override
@@ -26,14 +25,14 @@ class MemberDetailScreen extends StatelessWidget {
     return AppBar(
       title: Text(
         member.hasJoined ? 'Thống kê' : 'Thông tin',
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.white,
           fontSize: 18,
           fontWeight: FontWeight.bold,
         ),
       ),
       leading: IconButton(
-        icon: Icon(Icons.arrow_back),
+        icon: const Icon(Icons.arrow_back),
         color: Colors.white,
         onPressed: () => Get.back(),
       ),
@@ -48,7 +47,7 @@ class MemberDetailScreen extends StatelessWidget {
         children: [
           _buildTopSection(context),
           _buildJoinStatusSection(),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           _buildContentSection(ponds),
         ],
       ),
@@ -58,15 +57,15 @@ class MemberDetailScreen extends StatelessWidget {
   Widget _buildTopSection(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      color: Color(0xFF064E3B),
+      color: const Color(0xFF064E3B),
       child: Column(
         children: [
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           Container(
-            margin: EdgeInsets.only(top: 12),
+            margin: const EdgeInsets.only(top: 12),
             height: 80,
             width: 80,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
               color: Color(0xFF0B894C),
             ),
@@ -77,23 +76,23 @@ class MemberDetailScreen extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                 member.name,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               if (member.rank != null) ...[
-                SizedBox(width: 4),
+                const SizedBox(width: 4),
                 Text(
                   '(${member.rank})',
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -102,16 +101,16 @@ class MemberDetailScreen extends StatelessWidget {
               ],
             ],
           ),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           Text(
             'Thành viên từ: ${member.joinDate}',
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 12,
               fontWeight: FontWeight.normal,
             ),
           ),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
         ],
       ),
     );
@@ -120,13 +119,13 @@ class MemberDetailScreen extends StatelessWidget {
   Widget _buildJoinStatusSection() {
     return Container(
       width: double.infinity,
-      color: member.hasJoined ? Color(0xFF0B894C) : Color(0xFFC6212C),
+      color: member.hasJoined ? const Color(0xFF0B894C) : const Color(0xFFC6212C),
       alignment: Alignment.center,
       child: Padding(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         child: Text(
           member.hasJoined ? 'Đã tham gia thành công' : 'Chưa tham gia',
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
             fontSize: 12,
             fontWeight: FontWeight.bold,
@@ -138,7 +137,7 @@ class MemberDetailScreen extends StatelessWidget {
 
   Widget _buildContentSection(List<FishingPond> ponds) {
     if (!member.hasJoined) {
-      return Padding(
+      return const Padding(
         padding: EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -168,7 +167,8 @@ class MemberDetailScreen extends StatelessWidget {
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
-                Get.to(() => StatsDetailPage(pond: ponds[index], member: member));
+                Get.to(
+                    () => StatsDetailPage(pond: ponds[index], member: member));
               },
               child: CustomItemRef(pond: ponds[index]),
             );

@@ -133,65 +133,89 @@ class _ReferredContentState extends State<ReferredContent>
   }
 
   Widget _buildTabBar() {
-    return Row(
-      children: [
-        Expanded(
-          child: TabBar(
-            labelPadding: EdgeInsets.zero,
-            controller: _tabController,
-            isScrollable: false,
-            indicator: const BoxDecoration(),
-            indicatorColor: Colors.transparent,
-            labelStyle: const TextStyle(
-              fontSize: 14,
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-            ),
-            unselectedLabelStyle: const TextStyle(
-              fontSize: 14,
-              color: Color(0xFF808080),
-              fontWeight: FontWeight.bold,
-            ),
-            tabs: const [
-              Tab(text: 'Tất cả'),
-              Tab(text: 'Chưa tham gia'),
-              Tab(text: 'Đã tham gia'),
-            ],
-          ),
-        ),
-        Stack(
-          alignment: Alignment.center,
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 0.0),
+        child: Row(
           children: [
-            IconButton(
-              key: fabKey,
-              icon: const Icon(Icons.filter_list_alt),
-              onPressed: _showCustomPopup,
-            ),
-            Positioned(
-              left: 28,
-              bottom: 10,
-              child: Container(
-                width: 15,
-                height: 15,
-                decoration: BoxDecoration(
-                  color: const Color(0xFFC6212C),
-                  borderRadius: BorderRadius.circular(10),
+            Expanded(
+              child: TabBar(
+                controller: _tabController,
+                isScrollable: true,
+                indicator: const BoxDecoration(),
+                indicatorWeight: 0,
+                labelPadding: EdgeInsets.zero,
+                labelStyle: const TextStyle(
+                  fontSize: 14,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
                 ),
-                alignment: Alignment.center,
-                child: Text(
-                  '${selectedRanks.length}',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 10,
-                    fontWeight: FontWeight.bold,
+                unselectedLabelStyle: const TextStyle(
+                  fontSize: 14,
+                  color: Color(0xFF808080),
+                  fontWeight: FontWeight.bold,
+                ),
+                tabs: const[
+                  Tab(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 3),
+                      child: Text('Tất cả'),
+                    ),
                   ),
-                  textAlign: TextAlign.center,
-                ),
+                  Tab(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 3),
+                      child: Text('Chưa tham gia'),
+                    ),
+                  ),
+                  Tab(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 3),
+                      child: Text('Đã tham gia'),
+                    ),
+                  ),
+                ],
               ),
-            )
+            ),
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 12),
+                  child: IconButton(
+                    key: fabKey,
+                    icon: const Icon(Icons.filter_list_alt),
+                    onPressed: _showCustomPopup,
+                  ),
+                ),
+                Positioned(
+                  left: 28,
+                  bottom: 10,
+                  child: Container(
+                    width: 15,
+                    height: 15,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFC6212C),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      '${selectedRanks.length}',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                )
+              ],
+            ),
           ],
-        )
-      ],
+        ),
+      ),
     );
   }
 
@@ -206,82 +230,93 @@ class _ReferredContentState extends State<ReferredContent>
     }
 
     return ListView.separated(
-      itemCount: filteredMembers.length,
-      itemBuilder: (context, index) {
-        final member = filteredMembers[index];
-        return GestureDetector(
-          onTap: () {
-            Get.to(() => MemberDetailScreen(member: member));
-          },
-          child: ListTile(
-            leading: Container(
-              padding: const EdgeInsets.all(1),
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: Color(0xFF0B894C),
-              ),
-              child: SizedBox(
-                height: 50,
-                width: 50,
-                child: CircleAvatar(
-                  backgroundImage: AssetImage(member.image),
+        itemCount: filteredMembers.length,
+        itemBuilder: (context, index) {
+          final member = filteredMembers[index];
+          return GestureDetector(
+            onTap: () {
+              Get.to(() => MemberDetailScreen(member: member));
+            },
+            child: ListTile(
+              leading: Container(
+                padding: const EdgeInsets.all(1),
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Color(0xFF0B894C),
+                ),
+                child: SizedBox(
+                  height: 50,
+                  width: 50,
+                  child: CircleAvatar(
+                    backgroundImage: AssetImage(member.image),
+                  ),
                 ),
               ),
-            ),
-            title: Row(
-              children: [
-                Text(member.name),
-                if (member.rank != null) ...[
-                  const Text(' ('),
-                  Text('${member.rank}'),
-                  const Text(')'),
+              title: Row(
+                children: [
+                  Text(member.name),
+                  if (member.rank != null) ...[
+                    const Text(' ('),
+                    Text('${member.rank}'),
+                    const Text(')'),
+                  ],
                 ],
-              ],
-            ),
-            subtitle: Text(member.joinDate),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  width: 92,
-                  height: 26,
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                  decoration: BoxDecoration(
-                    color: member.hasJoined
-                        ? const Color.fromRGBO(11, 137, 76, 0.4)
-                        : const Color.fromRGBO(219, 33, 33, 0.4),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    member.hasJoined ? 'Đã tham gia' : 'Chưa tham gia',
-                    style: TextStyle(
-                      fontSize: 11,
-                      fontFamily: 'BeVietnam',
+              ),
+              subtitle: Text(
+                'Tham gia từ ${member.joinDate}',
+                style: const TextStyle(
+                  fontSize: 10,
+                  color: Color(0xFF808080)
+                ),
+              ),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    width: 92,
+                    height: 26,
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
                       color: member.hasJoined
-                          ? const Color(0xFF0B894C)
-                          : const Color(0xFFDB2121),
+                          ? const Color.fromRGBO(11, 137, 76, 0.4)
+                          : const Color.fromRGBO(219, 33, 33, 0.4),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      member.hasJoined ? 'Đã tham gia' : 'Chưa tham gia',
+                      style: TextStyle(
+                        fontSize: 11,
+                        fontFamily: 'BeVietnam',
+                        color: member.hasJoined
+                            ? const Color(0xFF0B894C)
+                            : const Color(0xFFDB2121),
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(width: 6),
-                const Icon(
-                  Icons.arrow_forward_ios_outlined,
-                  color: Colors.black,
-                  size: 16,
-                ),
-              ],
+                  const SizedBox(width: 6),
+                  const Icon(
+                    Icons.arrow_forward_ios_outlined,
+                    color: Colors.black,
+                    size: 16,
+                  ),
+                ],
+              ),
             ),
-          ),
-        );
-      },
-      separatorBuilder: (context, index) {
-        return const Divider(
-          height: 1,
-          thickness: 1,
-          color: Color(0xFFE5E5E5),
-        );
-      },
-    );
+          );
+        },
+        separatorBuilder: (context, index) {
+          return const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 12),
+            child: Divider(
+              height: 1,
+              thickness: 0.5,
+              color: Color(0xFF808080),
+            ),
+          );
+        });
   }
 }
+
+
