@@ -44,11 +44,11 @@ class EventDetailPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.asset(
-              'assets/images/hoca.png',
+              'assets/images/event1.png',
               width: double.infinity,
-              //height: 200,
+              // height: kH * 0.45,
             ),
-            SizedBox(height: 16.0),
+            SizedBox(height: 15.0),
             Container(
               padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
               child: GestureDetector(

@@ -9,13 +9,13 @@ class EventQrcodePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final kW = MediaQuery.of(context).size.width;
-
+    final kH = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
           'Quét nhận quà',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.white, fontSize: 20),
           textAlign: TextAlign.center,
         ),
         leading: IconButton(
@@ -33,7 +33,7 @@ class EventQrcodePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: const EdgeInsets.fromLTRB(0, 20, 0, 10),
+              padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
               alignment: Alignment.center,
               child: CustomText(
                 text: 'Đưa mã QR này cho người quản lý sự kiện',
@@ -41,14 +41,25 @@ class EventQrcodePage extends StatelessWidget {
                 fontSize: 16,
               ),
             ),
-            const SizedBox(height: 14),
-            Image.asset(
-              'assets/images/lake.png',
-              width: kW,
+            const SizedBox(height: 0),
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                Image.asset(
+                  'assets/images/qrbackground.jpg',
+                  width: kW,
+                ),
+                Image.asset(
+                  'assets/images/qrcode.png',
+                  width: kW * 0.5,
+                  height: kH * 0.5,
+                  alignment: Alignment.center,
+                ),
+              ],
             ),
             Container(
               width: kW * 0.9,
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -58,7 +69,7 @@ class EventQrcodePage extends StatelessWidget {
                         Icons.info_outline_rounded,
                         color: Colors.blue,
                       ),
-                      const SizedBox(width: 8.0),
+                      const SizedBox(width: 10.0),
                       Expanded(
                         child: const Text(
                           'Không chia sẻ QR cho người khác, để tránh mất phần quà của mình',
@@ -67,14 +78,14 @@ class EventQrcodePage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 8.0),
+                  const SizedBox(height: 10.0),
                   Row(
                     children: [
                       const Icon(
                         Icons.info_outline_rounded,
                         color: Colors.blue,
                       ),
-                      const SizedBox(width: 8.0),
+                      const SizedBox(width: 10.0),
                       Expanded(
                         child: const Text(
                           'QR nhận quà chỉ có hạn sử dụng 24h sau khi nhận, sau 24h sẽ không thể quẹt để nhận quà được nữa',

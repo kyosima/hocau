@@ -43,35 +43,40 @@ class EventCodePage extends StatelessWidget {
 class RewardScreen extends StatelessWidget {
   final List<RewardItem> items = [
     RewardItem(
-        'Tham gia quét mã nhận quà',
-        '1 chiếc cần câu lua máy đứng SHIMANO WORLD SHAULA',
-        'Mới đây',
-        'assets/images/banner.png',
-        'assets/images/hcv.png'),
+      'Tham gia quét mã nhận quà',
+      '1 chiếc cần câu lua máy đứng SHIMANO WORLD SHAULA',
+      'Mới đây',
+      'assets/images/event1.png',
+      'assets/images/qrcode1.png',
+    ),
     RewardItem(
-        'Tham gia quét mã nhận quà',
-        '1 chiếc cần câu lua máy đứng SHIMANO WORLD SHAULA',
-        '10 phút trước',
-        'assets/images/banner.png',
-        'assets/images/hcv.png'),
+      'Tham gia quét mã nhận quà',
+      '1 chiếc cần câu lua máy đứng SHIMANO WORLD SHAULA',
+      '10 phút trước',
+      'assets/images/event2.png',
+      'assets/images/qrcode1.png',
+    ),
     RewardItem(
-        'Tham gia quét mã nhận quà',
-        '1 chiếc cần câu lua máy đứng SHIMANO WORLD SHAULA',
-        '30 phút trước',
-        'assets/images/banner.png',
-        'assets/images/hcv.png'),
+      'Tham gia quét mã nhận quà',
+      '1 chiếc cần câu lua máy đứng SHIMANO WORLD SHAULA',
+      '30 phút trước',
+      'assets/images/event3.jpg',
+      'assets/images/qrcode1.png',
+    ),
     RewardItem(
-        'Tham gia quét mã nhận quà',
-        '1 chiếc cần câu lua máy đứng SHIMANO WORLD SHAULA',
-        'Hôm qua',
-        'assets/images/banner.png',
-        'assets/images/mark.png'),
+      'Tham gia quét mã nhận quà',
+      '1 chiếc cần câu lua máy đứng SHIMANO WORLD SHAULA',
+      'Hôm qua',
+      'assets/images/event4.jpg',
+      'assets/images/choose.png',
+    ),
     RewardItem(
-        'Tham gia quét mã nhận quà',
-        '1 chiếc cần câu lua máy đứng SHIMANO WORLD SHAULA',
-        '3 ngày trước',
-        'assets/images/banner.png',
-        'assets/images/mark.png'),
+      'Tham gia quét mã nhận quà',
+      '1 chiếc cần câu lua máy đứng SHIMANO WORLD SHAULA',
+      '3 ngày trước',
+      'assets/images/event5.jpg',
+      'assets/images/choose.png',
+    ),
   ];
 
   @override
@@ -199,10 +204,13 @@ class RewardCard extends StatelessWidget {
                   ),
                   Container(
                     color: Color.fromARGB(72, 255, 255, 255),
-                    padding: EdgeInsets.fromLTRB(15, 40, 15, 40),
+                    padding: EdgeInsets.fromLTRB(20, 50, 20, 50),
                     child: Image.asset(
                       item.qrcode,
-                      fit: BoxFit.cover,
+                      //width:
+                      //40.0, // Set a desired width for the icon (optional)
+                      //height:
+                      //40.0, // Set a desired height for the icon (optional)
                     ),
                   ),
                 ],
@@ -226,9 +234,9 @@ class TabBarWidget extends StatelessWidget {
           Container(
             color: Color.fromARGB(255, 255, 255, 255),
             child: TabBar(
-              labelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-              indicatorWeight: 3,
-              indicatorSize: TabBarIndicatorSize.label,
+              labelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+              indicatorWeight: 4,
+              indicatorSize: TabBarIndicatorSize.tab,
               indicatorColor: Colors.orange,
               labelColor: Colors.orange,
               unselectedLabelColor: const Color.fromARGB(255, 0, 0, 0),
