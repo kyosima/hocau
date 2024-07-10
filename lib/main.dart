@@ -98,18 +98,9 @@ class MyApp extends StatelessWidget {
           name: '/createEvent',
           page: () => CreateEvent(),
         ),
-        GetPage(
-          name: '/detailEvent',
-          page: () => EventDetailPage()
-          ),
-        GetPage(
-          name: '/event_qr', 
-          page: () => EventQrCode()
-          ),
-        GetPage(
-          name: '/event_link', 
-          page: () => EventLinkPage()
-        ),
+        GetPage(name: '/detailEvent', page: () => EventDetailPage()),
+        GetPage(name: '/event_qr', page: () => EventQrCode()),
+        GetPage(name: '/event_link', page: () => EventLinkPage()),
       ],
     );
   }

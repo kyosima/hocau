@@ -10,6 +10,7 @@ class EventDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final EventController eventCtrl = Get.find<EventController>();
+
     return Scaffold(
       appBar: AppBar(
         title: const Center(
@@ -20,7 +21,9 @@ class EventDetailPage extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              
+            },
             icon: const Icon(Icons.qr_code_scanner),
           ),
         ],
@@ -37,7 +40,11 @@ class EventDetailPage extends StatelessWidget {
               const SizedBox(height: 8),
               _buildParticipationConditions(switchValue, event),
               const SizedBox(height: 8),
-              _buildQRCodeSection(),
+              if (event.status.name != 'canceled' &&
+                  event.status.name != 'finished')
+                _buildQRCodeSection()
+              else
+                Container(),
               const SizedBox(height: 6),
               _buildActionButtons(event.status.name, context),
             ],
@@ -175,7 +182,7 @@ class EventDetailPage extends StatelessWidget {
           const SizedBox(height: 12),
           if (switchValue) ...[
             _buildMinPointsRequiredRow(event.minPointsRequired),
-            const SizedBox(height: 16),
+            const SizedBox(height: 12),
             _buildRankingRow(),
           ],
         ],

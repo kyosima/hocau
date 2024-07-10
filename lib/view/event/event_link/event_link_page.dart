@@ -152,15 +152,6 @@ class _buildEvenLinkIntroduce extends StatelessWidget {
   }
 }
 
-class _buildEvenLinkIntroducedContent extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        // Your widget's content goes here.
-        );
-  }
-}
-
 Text textStylesCus(String text) {
   return Text(text,
       style: TextStyle(
@@ -172,4 +163,156 @@ Padding paddingCus(double kW) {
       padding:
           EdgeInsets.only(top: kW > 450 ? 12 : 6, bottom: kW > 450 ? 12 : 6),
       child: Divider(height: 1, color: Color(0xff606060)));
+}
+
+class _buildEvenLinkIntroducedContent extends StatefulWidget {
+  @override
+  _buildEvenLinkIntroducedContentState createState() =>
+      _buildEvenLinkIntroducedContentState();
+}
+
+class _buildEvenLinkIntroducedContentState
+    extends State<_buildEvenLinkIntroducedContent> {
+  final List<User> users = [
+    User(
+        name: 'Phạm Bảo',
+        role: 'RF',
+        joined: true,
+        joinedDate: '19/01/2024',
+        image: 'path_to_image'),
+    User(
+        name: 'Cường Phô Mai',
+        role: 'R1',
+        joined: true,
+        joinedDate: '20/01/2024',
+        image: 'path_to_image'),
+    User(
+        name: 'Jude Bellingham',
+        role: '',
+        joined: false,
+        joinedDate: '21/01/2024',
+        image: 'path_to_image'),
+    User(
+        name: 'Trần Quốc Khánh',
+        role: '',
+        joined: false,
+        joinedDate: '08/06/2040',
+        image: 'path_to_image'),
+    User(
+        name: 'Alex Ferguson',
+        role: 'R2',
+        joined: true,
+        joinedDate: '21/01/2024',
+        image: 'path_to_image'),
+    User(
+        name: 'Kobe',
+        role: 'R3',
+        joined: true,
+        joinedDate: '21/01/2024',
+        image: 'path_to_image'),
+    User(
+        name: '=)))',
+        role: 'R2',
+        joined: true,
+        joinedDate: '21/01/2024',
+        image: 'path_to_image'),
+    User(
+        name: '=((',
+        role: 'R1',
+        joined: true,
+        joinedDate: '21/01/2024',
+        image: 'path_to_image'),
+    User(
+        name: 'Rờ Ép',
+        role: 'RF',
+        joined: true,
+        joinedDate: '21/01/2024',
+        image: 'path_to_image'),
+  ];
+
+  String filter = 'Tất cả';
+
+  @override
+  Widget build(BuildContext context) {
+    List<User> filteredUsers = users.where((user) {
+      if (filter == 'Tất cả') {
+        return true;
+      } else if (filter == 'Đã tham gia') {
+        return user.joined;
+      } else if (filter == 'Chưa tham gia') {
+        return !user.joined;
+      }
+      return true;
+    }).toList();
+
+    return Scaffold(
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: DropdownButton<String>(
+              value: filter,
+              items: <String>['Tất cả', 'Đã tham gia', 'Chưa tham gia']
+                  .map((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+              onChanged: (String? newValue) {
+                setState(() {
+                  filter = newValue!;
+                });
+              },
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: filteredUsers.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  leading: CircleAvatar(
+                    backgroundImage: AssetImage(filteredUsers[index].image),
+                  ),
+                  title: Text(
+                      '${filteredUsers[index].name} (${filteredUsers[index].role})'),
+                  subtitle:
+                      Text('Thành viên từ ${filteredUsers[index].joinedDate}'),
+                  trailing: Text(
+                    filteredUsers[index].joined
+                        ? 'Đã tham gia'
+                        : 'Chưa tham gia',
+                    style: TextStyle(
+                      color: filteredUsers[index].joined
+                          ? Colors.green
+                          : Colors.red,
+                    ),
+                  ),
+                  onTap: () {
+                    // Navigate to user details or perform another action
+                  },
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class User {
+  final String name;
+  final String role;
+  final bool joined;
+  final String joinedDate;
+  final String image;
+
+  User({
+    required this.name,
+    required this.role,
+    required this.joined,
+    required this.joinedDate,
+    required this.image,
+  });
 }

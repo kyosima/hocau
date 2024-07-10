@@ -2,6 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hocau/controller/event/event_controller.dart';
+import 'package:hocau/widget/custom_dialog.dart';
 import 'package:hocau/widget/custom_text.dart';
 import 'package:intl/intl.dart';
 
@@ -28,7 +29,7 @@ class _EventPageState extends State<EventPage> {
         body: NotificationListener<ScrollUpdateNotification>(
           onNotification: (scrollNotification) {
             final currentScroll = scrollNotification.metrics.pixels;
-            if (currentScroll > _lastScrollOffset && currentScroll > 170) {
+            if (currentScroll > _lastScrollOffset && currentScroll > 100) {
               // Lướt lên và vượt qua ngưỡng
               if (!_isSearchExpanded) {
                 setState(() {
@@ -36,7 +37,7 @@ class _EventPageState extends State<EventPage> {
                 });
               }
             } else if (_lastScrollOffset > currentScroll &&
-                _lastScrollOffset < 170) {
+                _lastScrollOffset < 150) {
               // Lướt xuống
               if (_isSearchExpanded) {
                 setState(() {
@@ -53,74 +54,90 @@ class _EventPageState extends State<EventPage> {
                 expandedHeight: 230,
                 backgroundColor:
                     !_isSearchExpanded ? Colors.white : const Color(0xff0B894C),
-                title: _isSearchExpanded
-                    ? TextField(
-                        style: const TextStyle(color: Colors.black),
-                        decoration: InputDecoration(
-                          hintText: 'Tìm kiếm...',
-                          hintStyle: const TextStyle(color: Colors.black),
-                          prefixIcon:
-                              const Icon(Icons.search, color: Colors.black),
-                          suffixIcon: IconButton(
-                            icon: Icon(Icons.filter_alt_outlined,
-                                color: Colors.black),
-                            onPressed: () {
-                              _showEventFilterBottomSheet(kW);
-                            },
-                          ),
-                          filled: true,
-                          fillColor: Colors.white,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          contentPadding:
-                              const EdgeInsets.symmetric(vertical: 10.0),
-                        ),
-                      )
-                    : const Center(
-                        child: Text('Quản lý sự kiện',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                            ))),
                 floating: false,
                 pinned: true,
+                title: AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 1000),
+                  transitionBuilder:
+                      (Widget child, Animation<double> animation) {
+                    return FadeTransition(opacity: animation, child: child);
+                  },
+                  child: _isSearchExpanded
+                      ? TextField(
+                          key: ValueKey<bool>(_isSearchExpanded),
+                          style: const TextStyle(color: Colors.black),
+                          decoration: InputDecoration(
+                            hintText: 'Tìm kiếm...',
+                            hintStyle: const TextStyle(color: Colors.black),
+                            prefixIcon:
+                                const Icon(Icons.search, color: Colors.black),
+                            suffixIcon: IconButton(
+                              icon: Icon(Icons.filter_alt_outlined,
+                                  color: Colors.black),
+                              onPressed: () {
+                                _showEventFilterBottomSheet(kW);
+                              },
+                            ),
+                            filled: true,
+                            fillColor: Colors.white,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            contentPadding:
+                                const EdgeInsets.symmetric(vertical: 10.0),
+                          ),
+                        )
+                      : Center(
+                          key: ValueKey<bool>(_isSearchExpanded),
+                          child: const Text('Quản lý sự kiện',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white,
+                              )),
+                        ),
+                ),
                 flexibleSpace: FlexibleSpaceBar(
-                  title: !_isSearchExpanded
-                      ? Stack(
-                          children: [
-                            _headerImage(kW),
-                            Positioned(
-                              bottom: 16,
-                              right: 16,
-                              child: Container(
-                                height: 34,
-                                width: kW < 450 ? 245 : 315,
-                                padding: EdgeInsets.only(left: 16),
-                                child: TextField(
-                                  style: const TextStyle(color: Colors.white),
-                                  decoration: InputDecoration(
-                                    hintText: 'Tìm kiếm...',
-                                    hintStyle: const TextStyle(
-                                        color: Colors.white, fontSize: 14),
-                                    prefixIcon: const Icon(Icons.search,
-                                        color: Colors.white, size: 20),
-                                    filled: true,
-                                    fillColor: Colors.white30,
-                                    border: OutlineInputBorder(
-                                      borderSide: BorderSide.none,
-                                      borderRadius: BorderRadius.circular(8),
+                  title: AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 500),
+                    transitionBuilder:
+                        (Widget child, Animation<double> animation) {
+                      return FadeTransition(opacity: animation, child: child);
+                    },
+                    child: !_isSearchExpanded
+                        ? Stack(
+                            children: [
+                              _headerImage(kW),
+                              Positioned(
+                                bottom: 30,
+                                right: 10,
+                                child: Container(
+                                  height: 34,
+                                  width: kW < 450 ? 245 : 315,
+                                  padding: EdgeInsets.only(left: 4),
+                                  child: TextField(
+                                    style: const TextStyle(color: Colors.white),
+                                    decoration: InputDecoration(
+                                      hintText: 'Tìm kiếm...',
+                                      hintStyle: const TextStyle(
+                                          color: Colors.white, fontSize: 12),
+                                      prefixIcon: const Icon(Icons.search,
+                                          color: Colors.white, size: 16),
+                                      filled: true,
+                                      fillColor: Colors.white30,
+                                      border: OutlineInputBorder(
+                                        borderSide: BorderSide.none,
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      contentPadding: EdgeInsets.all(4),
                                     ),
-                                    contentPadding:
-                                        EdgeInsets.fromLTRB(10, 8, 10, 8),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
-                        )
-                      : null,
+                            ],
+                          )
+                        : null,
+                  ),
                   centerTitle: true,
                 ),
                 actions: [
@@ -131,7 +148,7 @@ class _EventPageState extends State<EventPage> {
                             _showEventFilterBottomSheet(kW);
                           },
                         )
-                      : Container()
+                      : Container(),
                 ],
               ),
 
@@ -185,7 +202,7 @@ class _EventPageState extends State<EventPage> {
                                               ),
                                             )
                                           ],
-                                        )
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -388,63 +405,75 @@ List<Widget> _buildActionButtons(String event, BuildContext context) {
       break;
     case 'inProgress':
       buttons.add(createButton(Icons.pause, () {
-        AwesomeDialog(
+        showDialog(
           context: context,
-          dialogType: DialogType.warning,
-          title: 'Tạm ngưng sự kiện',
-          desc:
-              'Tạm ngưng sự kiện sẽ làm các chức năng liên quan tạm ngưng, hãy cân nhắc kỹ trước khi tiếp tục',
-          btnCancelText: 'Quay lại',
-          btnCancelColor: Colors.teal,
-          btnOkText: 'Tạm ngưng sự kiện',
-          btnOkOnPress: () {},
-          btnCancelOnPress: () {},
-        ).show();
+          builder: (BuildContext context) {
+            return CustomDialog(
+              icon: Icons.warning,
+              title: "Tạm ngưng sự kiện",
+              content:
+                  "Tạm ngưng sự kiện sẽ làm các chức năng liên quan tạm ngưng, hãy cân nhắc kỹ trước khi tiếp tục",
+              cancelButtonText: "Quay lại",
+              confirmButtonText: "Tạm ngưng sự kiện",
+              onCancel: () {},
+              onConfirm: () {},
+            );
+          },
+        );
       }));
       buttons.add(const SizedBox(width: 6));
       buttons.add(createButton(Icons.delete, () {
-        AwesomeDialog(
+        showDialog(
           context: context,
-          dialogType: DialogType.error,
-          title: 'Hủy sự kiện',
-          desc:
-              'Hủy sự kiện sẽ làm các chức năng liên quan bị vô hiệu, hành động này không thể hoàn tác nên hãy cân nhắc',
-          btnCancelText: 'Quay lại',
-          btnCancelColor: Colors.teal,
-          btnOkText: 'Hủy sự kiện',
-          btnOkOnPress: () {},
-          btnCancelOnPress: () {},
-        ).show();
+          builder: (BuildContext context) {
+            return CustomDialog(
+              icon: Icons.delete_outline,
+              title: "Hủy sự kiện",
+              content:
+                  "Hủy sự kiện sẽ làm các chức năng liên quan bị vô hiệu, hành động này không thể hoàn tác nên hãy cân nhắc",
+              cancelButtonText: "Quay lại",
+              confirmButtonText: "Hủy sự kiện",
+              onCancel: () {},
+              onConfirm: () {},
+            );
+          },
+        );
       }));
       break;
     case 'paused':
       buttons.add(createButton(Icons.play_circle, () {
-        AwesomeDialog(
+        showDialog(
           context: context,
-          dialogType: DialogType.info,
-          title: 'Tiếp tục sự kiện',
-          desc: 'Bạn có muốn tiếp tục sự kiện này',
-          btnCancelText: 'Quay lại',
-          btnCancelColor: Colors.teal,
-          btnOkText: 'Tiếp tục sự kiện',
-          btnOkOnPress: () {},
-          btnCancelOnPress: () {},
-        ).show();
+          builder: (BuildContext context) {
+            return CustomDialog(
+              icon: Icons.play_arrow_rounded,
+              title: "Tiếp tục sự kiện",
+              content: "Bạn có muốn tiếp tục sự kiện này",
+              cancelButtonText: "Quay lại",
+              confirmButtonText: "Tiếp tục sự kiện",
+              onCancel: () {},
+              onConfirm: () {},
+            );
+          },
+        );
       }));
       buttons.add(const SizedBox(width: 6));
       buttons.add(createButton(Icons.delete, () {
-        AwesomeDialog(
+        showDialog(
           context: context,
-          dialogType: DialogType.error,
-          title: 'Hủy sự kiện',
-          desc:
-              'Hủy sự kiện sẽ làm các chức năng liên quan bị vô hiệu, hành động này không thể hoàn tác nên hãy cân nhắc',
-          btnCancelText: 'Quay lại',
-          btnCancelColor: Colors.teal,
-          btnOkText: 'Hủy sự kiện',
-          btnOkOnPress: () {},
-          btnCancelOnPress: () {},
-        ).show();
+          builder: (BuildContext context) {
+            return CustomDialog(
+              icon: Icons.delete_outline,
+              title: "Hủy sự kiện",
+              content:
+                  "Hủy sự kiện sẽ làm các chức năng liên quan bị vô hiệu, hành động này không thể hoàn tác nên hãy cân nhắc",
+              cancelButtonText: "Quay lại",
+              confirmButtonText: "Hủy sự kiện",
+              onCancel: () {},
+              onConfirm: () {},
+            );
+          },
+        );
       }));
       break;
   }
@@ -487,7 +516,7 @@ void _showEventFilterBottomSheet(double kW) {
               'Hồ tổ chức',
               'Tất cả',
               kW,
-              () => _showNewBottomSheet(kW),
+              () => _showNewBottomSheetLake(kW),
             ),
             const SizedBox(height: 20),
             _buildFilterOption(
@@ -495,7 +524,7 @@ void _showEventFilterBottomSheet(double kW) {
               'Trạng thái',
               'Tất cả',
               kW,
-              () => _showNewBottomSheet(kW),
+              () => _showNewBottomSheetStatus(kW),
             ),
             const SizedBox(height: 20),
           ],
@@ -526,8 +555,13 @@ Widget _buildFilterOption(String imagePath, String title, String subtitle,
   );
 }
 
-void _showNewBottomSheet(double kW) {
+void _showNewBottomSheetLake(double kW) {
   final List<String> lakesList = [
+    'Lake Tahoe',
+    'Crater Lake',
+    'Lake Superior',
+    'Lake Victoria',
+    'Lake Baikal',
     'Lake Tahoe',
     'Crater Lake',
     'Lake Superior',
@@ -545,23 +579,131 @@ void _showNewBottomSheet(double kW) {
         ),
       ),
       child: Padding(
-        padding: EdgeInsets.all(kW * 0.05),
+        padding: EdgeInsets.all(kW * 0.02),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: () {
-                Get.back();
-              },
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.arrow_back),
+                      onPressed: () {
+                        Get.back();
+                      },
+                    ),
+                    SizedBox(width: 20),
+                    Text(
+                      'Hồ tổ chức',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Text('Đặt lại', style: TextStyle(fontSize: 14)),
+                    SizedBox(
+                      width: 10,
+                    ),
+                  ],
+                )
+              ],
             ),
+            const Divider(height: 20, color: Colors.black54),
             Expanded(
               child: ListView.builder(
                 itemCount: lakesList.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
                   return ListTile(
-                    title: Text(lakesList[index]),
+                    title: Text(
+                      lakesList[index],
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                    ),
+                    trailing: IconButton(
+                      icon: Icon(Icons.radio_button_off),
+                      onPressed: () {},
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
+void _showNewBottomSheetStatus(double kW) {
+  final List<String> lakesList = [
+    'Chưa bắt đầu',
+    'Đang diễn ra',
+    'Kết thúc',
+    'Tạm ngưng',
+    'Đã Hủy',
+    'Đã kết thúc',
+  ];
+
+  Get.bottomSheet(
+    Container(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(10),
+          topLeft: Radius.circular(10),
+        ),
+      ),
+      child: Padding(
+        padding: EdgeInsets.all(kW * 0.02),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.arrow_back),
+                      onPressed: () {
+                        Get.back();
+                      },
+                    ),
+                    SizedBox(width: 20),
+                    Text(
+                      'Trạng thái',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Text('Đặt lại', style: TextStyle(fontSize: 14)),
+                    SizedBox(
+                      width: 10,
+                    ),
+                  ],
+                )
+              ],
+            ),
+            const Divider(height: 20, color: Colors.black54),
+            Expanded(
+              child: ListView.builder(
+                itemCount: lakesList.length,
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(
+                      lakesList[index],
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                    ),
                     trailing: IconButton(
                       icon: Icon(Icons.radio_button_off),
                       onPressed: () {},

@@ -27,6 +27,12 @@ class _CreateEventState extends State<CreateEvent> {
             style: TextStyle(color: Colors.white),
           ),
         ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.done_all),
+            onPressed: () {},
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -78,7 +84,7 @@ class _CreateEventState extends State<CreateEvent> {
 
   Widget _buildInformationForm(double kW) {
     return Container(
-      height: kW < 450 ? 600 : 550,
+      height: kW < 450 ? 600 : 500,
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
@@ -107,8 +113,7 @@ class _CreateEventState extends State<CreateEvent> {
             const SizedBox(height: 12),
             _buildTextFormField(
               ' Số lượng phần quà (không bắt buộc)',
-              hintText:
-                  'Một chiêc Xe Container giá 100 triệu ( không giấy tờ xe)',
+              
               minLines: 1,
               maxLines: 3,
             ),
@@ -153,7 +158,6 @@ class _CreateEventState extends State<CreateEvent> {
     return TextFormField(
       decoration: InputDecoration(
         labelText: labelText,
-        hintText: 'Ví dụ: 01/01/2011',
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(8)),
         ),
