@@ -221,12 +221,12 @@ class _CreateEventState extends State<CreateEvent> {
     return Column(
       children: [
         Row(
-          children: [
-            const Icon(Icons.settings),
-            const SizedBox(width: 6),
-            const Text('Có điểm CCV từ', style: TextStyle(fontSize: 16)),
-            const SizedBox(width: 6),
-            const Expanded(
+          children: const [
+             Icon(Icons.settings),
+             SizedBox(width: 6),
+             Text('Có điểm CCV từ', style: TextStyle(fontSize: 16)),
+             SizedBox(width: 6),
+             Expanded(
               child: TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
@@ -238,8 +238,8 @@ class _CreateEventState extends State<CreateEvent> {
                 keyboardType: TextInputType.number,
               ),
             ),
-            const SizedBox(width: 6),
-            const Text('trở lên', style: TextStyle(fontSize: 16)),
+             SizedBox(width: 6),
+             Text('trở lên', style: TextStyle(fontSize: 16)),
           ],
         ),
         const SizedBox(height: 16),

@@ -1,7 +1,12 @@
+import 'dart:math';
+import 'dart:ui';
+
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:hocau/controller/event/event_controller.dart';
+import 'package:hocau/view/event/event_managers/notification_handler.dart';
 import 'package:hocau/widget/custom_dialog.dart';
 import 'package:hocau/widget/custom_text.dart';
 import 'package:intl/intl.dart';
@@ -16,231 +21,298 @@ class EventPage extends StatefulWidget {
 }
 
 class _EventPageState extends State<EventPage> {
+  late double minExtent;
+  late double maxExtent;
+
+  final ScrollController scrollController = ScrollController();
   final EventController eventCtrl = Get.put(EventController());
-  bool _isSearchExpanded = false;
-  double _lastScrollOffset = 0;
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final kW = MediaQuery.of(context).size.width;
-    final kH = MediaQuery.of(context).size.height;
+    minExtent = kToolbarHeight + MediaQuery.of(context).padding.top;
+    maxExtent = 230;
 
     return Scaffold(
-        body: NotificationListener<ScrollUpdateNotification>(
-          onNotification: (scrollNotification) {
-            final currentScroll = scrollNotification.metrics.pixels;
-            if (currentScroll > _lastScrollOffset && currentScroll > 100) {
-              // Lướt lên và vượt qua ngưỡng
-              if (!_isSearchExpanded) {
-                setState(() {
-                  _isSearchExpanded = true;
-                });
-              }
-            } else if (_lastScrollOffset > currentScroll &&
-                _lastScrollOffset < 150) {
-              // Lướt xuống
-              if (_isSearchExpanded) {
-                setState(() {
-                  _isSearchExpanded = false;
-                });
-              }
-            }
-            _lastScrollOffset = currentScroll;
-            return true;
-          },
-          child: CustomScrollView(
-            slivers: <Widget>[
-              SliverAppBar(
-                expandedHeight: 230,
-                backgroundColor:
-                    !_isSearchExpanded ? Colors.white : const Color(0xff0B894C),
-                floating: false,
-                pinned: true,
-                title: AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 1000),
-                  transitionBuilder:
-                      (Widget child, Animation<double> animation) {
-                    return FadeTransition(opacity: animation, child: child);
-                  },
-                  child: _isSearchExpanded
-                      ? TextField(
-                          key: ValueKey<bool>(_isSearchExpanded),
-                          style: const TextStyle(color: Colors.black),
-                          decoration: InputDecoration(
-                            hintText: 'Tìm kiếm...',
-                            hintStyle: const TextStyle(color: Colors.black),
-                            prefixIcon:
-                                const Icon(Icons.search, color: Colors.black),
-                            suffixIcon: IconButton(
-                              icon: Icon(Icons.filter_alt_outlined,
-                                  color: Colors.black),
-                              onPressed: () {
-                                _showEventFilterBottomSheet(kW);
-                              },
-                            ),
-                            filled: true,
-                            fillColor: Colors.white,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            contentPadding:
-                                const EdgeInsets.symmetric(vertical: 10.0),
-                          ),
-                        )
-                      : Center(
-                          key: ValueKey<bool>(_isSearchExpanded),
-                          child: const Text('Quản lý sự kiện',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white,
-                              )),
-                        ),
-                ),
-                flexibleSpace: FlexibleSpaceBar(
-                  title: AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 500),
-                    transitionBuilder:
-                        (Widget child, Animation<double> animation) {
-                      return FadeTransition(opacity: animation, child: child);
+      extendBodyBehindAppBar: true,
+      backgroundColor: Colors.white,
+      body: AppBarScrollHandler(
+        minExtent: minExtent,
+        maxExtent: maxExtent,
+        controller: scrollController,
+        child: CustomScrollView(
+          controller: scrollController,
+          slivers: [
+            SliverPersistentHeader(
+              pinned: true,
+              delegate: SliverAppBarDelegate(
+                minExtent: minExtent,
+                maxExtent: maxExtent,
+              ),
+            ),
+            // event items
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                childCount: eventCtrl.events.length,
+                (context, index) {
+                  final event = eventCtrl.events[index];
+                  return InkWell(
+                    onTap: () {
+                      eventCtrl.selectEvent(event);
+                      Get.toNamed('/detailEvent');
                     },
-                    child: !_isSearchExpanded
-                        ? Stack(
-                            children: [
-                              _headerImage(kW),
-                              Positioned(
-                                bottom: 30,
-                                right: 10,
-                                child: Container(
-                                  height: 34,
-                                  width: kW < 450 ? 245 : 315,
-                                  padding: EdgeInsets.only(left: 4),
-                                  child: TextField(
-                                    style: const TextStyle(color: Colors.white),
-                                    decoration: InputDecoration(
-                                      hintText: 'Tìm kiếm...',
-                                      hintStyle: const TextStyle(
-                                          color: Colors.white, fontSize: 12),
-                                      prefixIcon: const Icon(Icons.search,
-                                          color: Colors.white, size: 16),
-                                      filled: true,
-                                      fillColor: Colors.white30,
-                                      border: OutlineInputBorder(
-                                        borderSide: BorderSide.none,
-                                        borderRadius: BorderRadius.circular(8),
+                    child: Card(
+                      elevation: 5,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      margin: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+                      child: Padding(
+                        padding: const EdgeInsets.all(0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Stack(
+                              children: [
+                                _imageEventCard(event.image),
+                                Positioned(
+                                  top: 0,
+                                  left: 0,
+                                  right: 0,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          _headerStatusEventCard(
+                                              event.status.name),
+                                          Container(
+                                            margin: const EdgeInsets.fromLTRB(
+                                                0, 6, 6, 0),
+                                            child: Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.end,
+                                              children: _buildActionButtons(
+                                                  event.status.name, context),
+                                            ),
+                                          )
+                                        ],
                                       ),
-                                      contentPadding: EdgeInsets.all(4),
-                                    ),
+                                    ],
                                   ),
                                 ),
-                              ),
-                            ],
-                          )
-                        : null,
-                  ),
-                  centerTitle: true,
-                ),
-                actions: [
-                  !_isSearchExpanded
-                      ? IconButton(
-                          icon: const Icon(Icons.filter_alt_outlined),
-                          onPressed: () {
-                            _showEventFilterBottomSheet(kW);
-                          },
-                        )
-                      : Container(),
-                ],
-              ),
-
-              // event items
-              SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  childCount: eventCtrl.events.length,
-                  (context, index) {
-                    final event = eventCtrl.events[index];
-                    return InkWell(
-                      onTap: () {
-                        eventCtrl.selectEvent(event);
-                        Get.toNamed('/detailEvent');
-                      },
-                      child: Card(
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        margin: const EdgeInsets.fromLTRB(16, 12, 16, 0),
-                        child: Padding(
-                          padding: const EdgeInsets.all(0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Stack(
-                                children: [
-                                  _imageEventCard(event.image),
-                                  Positioned(
-                                    top: 0,
-                                    left: 0,
-                                    right: 0,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            _headerStatusEventCard(
-                                                event.status.name),
-                                            Container(
-                                              margin: const EdgeInsets.fromLTRB(
-                                                  0, 6, 6, 0),
-                                              child: Row(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.end,
-                                                children: _buildActionButtons(
-                                                    event.status.name, context),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  _bodyEventCard(event.description),
-                                ],
-                              ),
-                              _footerEventCard(
-                                  event.status.name,
-                                  event.startDate,
-                                  event.endDate,
-                                  event.ticket,
-                                  event.totalTicket),
-                            ],
-                          ),
+                                _bodyEventCard(event.description),
+                              ],
+                            ),
+                            _footerEventCard(event.status.name, event.startDate,
+                                event.endDate, event.ticket, event.totalTicket),
+                          ],
                         ),
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-        floatingActionButton: _floatingActionButton());
+      ),
+      floatingActionButton: _floatingActionButton(),
+    );
   }
 }
 
-Widget _headerImage(double kW) {
-  return SizedBox(
-    width: kW,
-    child: ClipRRect(
-      borderRadius: const BorderRadius.vertical(bottom: Radius.circular(8)),
-      child: Image.asset(
-        'assets/images/headimageevent.png',
-        fit: BoxFit.cover,
-      ),
+class SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
+  const SliverAppBarDelegate({
+    required this.minExtent,
+    required this.maxExtent,
+  });
+
+  @override
+  final double minExtent;
+  @override
+  final double maxExtent;
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    return minExtent != oldDelegate.minExtent ||
+        maxExtent != oldDelegate.maxExtent;
+  }
+
+  @override
+  OverScrollHeaderStretchConfiguration? get stretchConfiguration =>
+      OverScrollHeaderStretchConfiguration();
+
+  double get deltaExtent => maxExtent - minExtent;
+
+  static const imgBgr = ClipRRect(
+    borderRadius: BorderRadius.only(
+      bottomLeft: Radius.circular(8.0),
+      bottomRight: Radius.circular(8.0),
+    ),
+    child: Image(
+      image: AssetImage('assets/images/headimageevent.png'),
+      fit: BoxFit.cover,
     ),
   );
+
+  double transform(double begin, double end, double t, [double x = 1]) {
+    return Tween<double>(begin: begin, end: end)
+        .transform(x == 1 ? t : min(1.0, t * x));
+  }
+
+  Color transformColor(Color? begin, Color? end, double t, [double x = 1]) {
+    return ColorTween(begin: begin, end: end)
+            .transform(x == 1 ? t : min(1.0, t * x)) ??
+        Colors.transparent;
+  }
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    final currentExtent = max(minExtent, maxExtent - shrinkOffset);
+    double t =
+        clampDouble(1.0 - (currentExtent - minExtent) / deltaExtent, 0, 1);
+    CollapsingNotification(t).dispatch(context);
+    final kW = MediaQuery.of(context).size.width;
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+            final List<Widget> children = <Widget>[];
+            final splashColoredBox =
+                ColoredBox(color: transformColor(null, Colors.white, t, 3));
+
+            double imgBgrHeight = maxExtent;
+
+            if (constraints.maxHeight > imgBgrHeight) {
+              imgBgrHeight = constraints.maxHeight;
+            }
+            children
+              ..add(Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                height: imgBgrHeight,
+                child: imgBgr,
+              ))
+              ..add(Positioned(
+                bottom: 0,
+                width: constraints.maxWidth,
+                height: deltaExtent,
+                child: splashColoredBox,
+              ));
+
+            const double cardPadding = 60;
+            const double cardMarginHorizontal = 20;
+            const double tapTargetSize = kMinInteractiveDimension;
+            // appBar
+            const appBarPadding = SizedBox(width: 8);
+            final appBarContentWidth =
+                constraints.maxWidth - (appBarPadding.width! * 4);
+            const totalIconImgButtonSize = tapTargetSize * 7;
+            final appBarSpace = SizedBox(
+                width: (appBarContentWidth - totalIconImgButtonSize) / 6);
+            children.add(Positioned(
+              left: 0,
+              top: 0,
+              right: 0,
+              child: Container(
+                height: minExtent,
+                color: transformColor(null, const Color(0xff0B894C), t, 2),
+                child: SafeArea(
+                  bottom: false,
+                  child: Row(
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.arrow_back, color: Colors.white),
+                        onPressed: () {},
+                      ),
+                      const Spacer(),
+                      const Text('Quản lý sự kiện',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600)),
+                      appBarSpace,
+                      const Spacer(),
+                      appBarSpace,
+                      IconButton(
+                        icon: const Icon(Icons.filter_alt_outlined,
+                            color: Colors.white),
+                        onPressed: () {
+                          _showEventFilterBottomSheet(kW);
+                        },
+                      ),
+                      appBarPadding,
+                    ],
+                  ),
+                ),
+              ),
+            ));
+            // search
+            final double cardWidth =
+                constraints.maxWidth - (cardMarginHorizontal * 5);
+            final cardSpace = (cardWidth - (tapTargetSize * 4)) / 5;
+            final Color expandedTextColor = Colors.black;
+            final Color collapsedTextColor = Colors.white;
+            final Color expandedbgr = const Color(0xffD0D5DD).withOpacity(0.5);
+            Color textColor =
+                transformColor(collapsedTextColor, expandedTextColor, t);
+            Color bgColor = transformColor(expandedbgr, collapsedTextColor, t);
+            children.add(Positioned(
+                left: transform(
+                    cardSpace + cardPadding - 60,
+                    appBarPadding.width! + tapTargetSize + appBarSpace.width!,
+                    t,
+                    2),
+                right: transform(
+                    cardSpace + cardPadding - 60, appBarPadding.width!, t, 2),
+                top: constraints.maxHeight > maxExtent
+                    ? null
+                    : transform(minExtent + cardPadding,
+                        minExtent - tapTargetSize - 4, t, 2),
+                bottom: constraints.maxHeight < maxExtent
+                    ? null
+                    : deltaExtent - tapTargetSize - cardPadding,
+                child: TextField(
+                  style: TextStyle(color: textColor),
+                  decoration: InputDecoration(
+                    hintText: 'Tìm kiếm...',
+                    hintStyle: TextStyle(color: textColor),
+                    prefixIcon: Icon(Icons.search, color: textColor),
+                    suffixIcon: constraints.maxHeight < maxExtent
+                        ? IconButton(
+                            icon: Icon(Icons.filter_alt_outlined,
+                                color: textColor),
+                            onPressed: () {
+                              _showEventFilterBottomSheet(kW);
+                            },
+                          )
+                        : null,
+                    filled: true,
+                    fillColor: bgColor,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    contentPadding: const EdgeInsets.symmetric(vertical: 10.0),
+                  ),
+                )));
+
+            return Stack(children: children);
+          },
+        ),
+      ],
+    );
+  }
 }
 
 Widget _imageEventCard(String event) {
@@ -401,7 +473,8 @@ List<Widget> _buildActionButtons(String event, BuildContext context) {
 
   switch (event) {
     case 'notStarted':
-      buttons.add(createButton(Icons.edit, () {}));
+      buttons.add(createButton(Icons.edit, () {
+      }));
       break;
     case 'inProgress':
       buttons.add(createButton(Icons.pause, () {
@@ -569,70 +642,93 @@ void _showNewBottomSheetLake(double kW) {
     'Lake Baikal'
   ];
 
+  int selectedLakeIndex = -1; // Biến theo dõi chỉ số của ListTile được chọn
+
+  void resetSelection() {
+    selectedLakeIndex = -1; // Đặt lại lựa chọn
+  }
+
   Get.bottomSheet(
-    Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(10),
-          topLeft: Radius.circular(10),
+    StatefulBuilder(
+      builder: (BuildContext context, StateSetter setState) => Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(10),
+            topLeft: Radius.circular(10),
+          ),
         ),
-      ),
-      child: Padding(
-        padding: EdgeInsets.all(kW * 0.02),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    IconButton(
-                      icon: Icon(Icons.arrow_back),
-                      onPressed: () {
-                        Get.back();
-                      },
+        child: Padding(
+          padding: EdgeInsets.all(kW * 0.02),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      IconButton(
+                        icon: Icon(Icons.arrow_back),
+                        onPressed: () {
+                          Get.back();
+                        },
+                      ),
+                      SizedBox(width: 20),
+                      Text(
+                        'Hồ tổ chức',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                    ],
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        resetSelection();
+                      });
+                    },
+                    child: Row(
+                      children: [
+                        Text('Đặt lại', style: TextStyle(fontSize: 14)),
+                        SizedBox(width: 10),
+                      ],
                     ),
-                    SizedBox(width: 20),
-                    Text(
-                      'Hồ tổ chức',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text('Đặt lại', style: TextStyle(fontSize: 14)),
-                    SizedBox(
-                      width: 10,
-                    ),
-                  ],
-                )
-              ],
-            ),
-            const Divider(height: 20, color: Colors.black54),
-            Expanded(
-              child: ListView.builder(
-                itemCount: lakesList.length,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(
-                      lakesList[index],
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-                    ),
-                    trailing: IconButton(
-                      icon: Icon(Icons.radio_button_off),
-                      onPressed: () {},
-                    ),
-                  );
-                },
+                  )
+                ],
               ),
-            ),
-          ],
+              const Divider(height: 20, color: Colors.black54),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: lakesList.length,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(
+                        lakesList[index],
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w400),
+                      ),
+                      trailing: IconButton(
+                        icon: Icon(
+                          selectedLakeIndex == index
+                              ? Icons.radio_button_checked
+                              : Icons.radio_button_off,
+                          color:
+                              selectedLakeIndex == index ? Colors.blue : null,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            selectedLakeIndex = index;
+                          });
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     ),
@@ -640,7 +736,7 @@ void _showNewBottomSheetLake(double kW) {
 }
 
 void _showNewBottomSheetStatus(double kW) {
-  final List<String> lakesList = [
+  final List<String> statussList = [
     'Chưa bắt đầu',
     'Đang diễn ra',
     'Kết thúc',
@@ -648,71 +744,93 @@ void _showNewBottomSheetStatus(double kW) {
     'Đã Hủy',
     'Đã kết thúc',
   ];
+  int selectedStatusIndex = -1; // Biến theo dõi chỉ số của ListTile được chọn
+
+  void resetSelection() {
+    selectedStatusIndex = -1; // Đặt lại lựa chọn
+  }
 
   Get.bottomSheet(
-    Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(10),
-          topLeft: Radius.circular(10),
+    StatefulBuilder(
+      builder: (BuildContext context, StateSetter setState) => Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(10),
+            topLeft: Radius.circular(10),
+          ),
         ),
-      ),
-      child: Padding(
-        padding: EdgeInsets.all(kW * 0.02),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    IconButton(
-                      icon: Icon(Icons.arrow_back),
-                      onPressed: () {
-                        Get.back();
-                      },
+        child: Padding(
+          padding: EdgeInsets.all(kW * 0.02),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      IconButton(
+                        icon: Icon(Icons.arrow_back),
+                        onPressed: () {
+                          Get.back();
+                        },
+                      ),
+                      SizedBox(width: 20),
+                      Text(
+                        'Trạng thái',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                    ],
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        resetSelection();
+                      });
+                    },
+                    child: Row(
+                      children: [
+                        Text('Đặt lại', style: TextStyle(fontSize: 14)),
+                        SizedBox(width: 10),
+                      ],
                     ),
-                    SizedBox(width: 20),
-                    Text(
-                      'Trạng thái',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text('Đặt lại', style: TextStyle(fontSize: 14)),
-                    SizedBox(
-                      width: 10,
-                    ),
-                  ],
-                )
-              ],
-            ),
-            const Divider(height: 20, color: Colors.black54),
-            Expanded(
-              child: ListView.builder(
-                itemCount: lakesList.length,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(
-                      lakesList[index],
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-                    ),
-                    trailing: IconButton(
-                      icon: Icon(Icons.radio_button_off),
-                      onPressed: () {},
-                    ),
-                  );
-                },
+                  )
+                ],
               ),
-            ),
-          ],
+              const Divider(height: 20, color: Colors.black54),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: statussList.length,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(
+                        statussList[index],
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w400),
+                      ),
+                      trailing: IconButton(
+                        icon: Icon(
+                          selectedStatusIndex == index
+                              ? Icons.radio_button_checked
+                              : Icons.radio_button_off,
+                          color:
+                              selectedStatusIndex == index ? Colors.blue : null,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            selectedStatusIndex = index;
+                          });
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     ),

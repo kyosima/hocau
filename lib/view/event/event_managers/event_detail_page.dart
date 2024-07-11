@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hocau/widget/custom_dialog.dart';
 import 'package:intl/intl.dart';
 import '../../../controller/event/event_controller.dart';
 import '../../../widget/custom_text.dart';
@@ -21,9 +22,7 @@ class EventDetailPage extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {
-              
-            },
+            onPressed: () {},
             icon: const Icon(Icons.qr_code_scanner),
           ),
         ],
@@ -350,12 +349,75 @@ List<Widget> buildActionButtonsStatus(String status, BuildContext context) {
       buttons.add(createButton(status, () {}));
       break;
     case 'inProgress':
-      buttons.add(createButton(status, () {}));
-      buttons.add(buttonCanceledAndFinished(() {}));
+      buttons.add(createButton(status, () {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return CustomDialog(
+              icon: Icons.warning,
+              title: "Tạm ngưng sự kiện",
+              content:
+                  "Tạm ngưng sự kiện sẽ làm các chức năng liên quan tạm ngưng, hãy cân nhắc kỹ trước khi tiếp tục",
+              cancelButtonText: "Quay lại",
+              confirmButtonText: "Tạm ngưng sự kiện",
+              onCancel: () {},
+              onConfirm: () {},
+            );
+          },
+        );
+      }));
+      buttons.add(buttonCanceledAndFinished(() {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return CustomDialog(
+              icon: Icons.delete_outline,
+              title: "Hủy sự kiện",
+              content:
+                  "Hủy sự kiện sẽ làm các chức năng liên quan bị vô hiệu, hành động này không thể hoàn tác nên hãy cân nhắc",
+              cancelButtonText: "Quay lại",
+              confirmButtonText: "Hủy sự kiện",
+              onCancel: () {},
+              onConfirm: () {},
+            );
+          },
+        );
+      }));
       break;
     case 'paused':
-      buttons.add(createButton(status, () {}));
-      buttons.add(buttonCanceledAndFinished(() {}));
+      buttons.add(createButton(status, () {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return CustomDialog(
+              icon: Icons.play_arrow_rounded,
+              title: "Tiếp tục sự kiện",
+              content: "Bạn có muốn tiếp tục sự kiện này",
+              cancelButtonText: "Quay lại",
+              confirmButtonText: "Tiếp tục sự kiện",
+              onCancel: () {},
+              onConfirm: () {},
+            );
+          },
+        );
+      }));
+      buttons.add(buttonCanceledAndFinished(() {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return CustomDialog(
+              icon: Icons.delete_outline,
+              title: "Hủy sự kiện",
+              content:
+                  "Hủy sự kiện sẽ làm các chức năng liên quan bị vô hiệu, hành động này không thể hoàn tác nên hãy cân nhắc",
+              cancelButtonText: "Quay lại",
+              confirmButtonText: "Hủy sự kiện",
+              onCancel: () {},
+              onConfirm: () {},
+            );
+          },
+        );
+      }));
       break;
     case 'finished':
     case 'canceled':
@@ -382,7 +444,7 @@ Color getColor(String status) {
 String changeToVN(String status) {
   switch (status) {
     case 'notStarted':
-      return 'Chưa diễn ra';
+      return 'Lưu chỉnh sửa';
     case 'inProgress':
       return 'Tạm ngưng';
     case 'paused':
