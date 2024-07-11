@@ -5,6 +5,8 @@ import 'package:hocau/data/member.dart';
 import '../../../data/ref_detail_member.dart';
 import '../../../widget/custom_order_detail_widget.dart';
 
+import 'package:intl/intl.dart';
+
 class StatsDetailPage extends StatefulWidget {
   final Member member;
   final FishingPond pond;
@@ -18,6 +20,7 @@ class StatsDetailPage extends StatefulWidget {
 
 class _StatsDetailPageState extends State<StatsDetailPage> {
   bool _isDetailVisible = true;
+  DateTime? _selectedDay;
 
   void _toggleDetailVisibility() {
     setState(() {
@@ -29,21 +32,100 @@ class _StatsDetailPageState extends State<StatsDetailPage> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
+        DateTime? localSelectedDay = _selectedDay ?? DateTime.now();
+        DateTime localFocusedDay = _selectedDay ?? DateTime.now();
+
         return AlertDialog(
-          content: Container(
-            width: double.maxFinite,
-            child: TableCalendar(
-              firstDay: DateTime.utc(2010, 10, 16),
-              lastDay: DateTime.utc(2030, 3, 14),
-              focusedDay: DateTime.now(),
-            ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15.0)),
+          ),
+          backgroundColor: Colors.white,
+          content: StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {
+              return SizedBox(
+                height: 500,
+                child: Container(
+                  width: double.maxFinite,
+                  child: TableCalendar(
+                    firstDay: DateTime.utc(2010, 10, 16),
+                    lastDay: DateTime.utc(2030, 3, 14),
+                    focusedDay: localFocusedDay,
+                    selectedDayPredicate: (day) =>
+                        isSameDay(localSelectedDay, day),
+                    onDaySelected: (selectedDay, focusedDay) {
+                      setState(() {
+                        localSelectedDay = selectedDay;
+                        localFocusedDay = focusedDay;
+                      });
+                    },
+                    onPageChanged: (focusedDay) {
+                      setState(() {
+                        localFocusedDay = focusedDay;
+                      });
+                    },
+                    calendarStyle: CalendarStyle(
+                      todayDecoration: BoxDecoration(
+                        color: Colors.green,
+                        shape: BoxShape.circle,
+                      ),
+                      selectedDecoration: BoxDecoration(
+                        color: Colors.deepOrange,
+                        shape: BoxShape.circle,
+                      ),
+                      outsideDaysVisible: false,
+                    ),
+                    headerStyle: HeaderStyle(
+                      formatButtonVisible: false,
+                      titleCentered: true,
+                      titleTextStyle: TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    daysOfWeekStyle: DaysOfWeekStyle(
+                      weekendStyle: TextStyle(color: Colors.red),
+                    ),
+                    // Other properties...
+                  ),
+                ),
+              );
+            },
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('Close'),
+              child: Text('Close', style: TextStyle(color: Colors.red)),
               onPressed: () {
+                setState(() {
+                  _selectedDay = localSelectedDay;
+                });
                 Navigator.of(context).pop();
               },
+              style: ButtonStyle(
+                shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                    side: BorderSide(color: Colors.red),
+                  ),
+                ),
+              ),
+            ),
+            TextButton(
+              child: Text('Okay', style: TextStyle(color: Colors.blue)),
+              onPressed: () {
+                setState(() {
+                  _selectedDay = localSelectedDay;
+                });
+                Navigator.of(context).pop();
+              },
+              style: ButtonStyle(
+                foregroundColor: WidgetStateProperty.all<Color>(Colors.blue),
+                shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                    side: BorderSide(color: Colors.blue),
+                  ),
+                ),
+              ),
             ),
           ],
         );
@@ -54,9 +136,9 @@ class _StatsDetailPageState extends State<StatsDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: _buildAppBar(context),
       body: Container(
-        color: const Color(0xFFffffff),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -64,7 +146,9 @@ class _StatsDetailPageState extends State<StatsDetailPage> {
               ListTile(
                 tileColor: Color(0x402874CA),
                 title: Text(
-                  'Tháng 4/2024',
+                  _selectedDay != null
+                      ? 'Tháng ' + DateFormat('MM/yyyy').format(_selectedDay!)
+                      : 'Tháng ' + DateFormat('MM/yyyy').format(DateTime.now()),
                   style: TextStyle(
                     fontSize: 15,
                     color: Color(0xFF000000),
@@ -91,29 +175,48 @@ class _StatsDetailPageState extends State<StatsDetailPage> {
                   ],
                 ),
               ),
-              Visibility(
-                visible: _isDetailVisible,
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: widget.pond.detailedOrders.length * 2,
-                  itemBuilder: (context, index) {
-                    int actualIndex = index % widget.pond.detailedOrders.length;
-                    return Column(
-                      children: [
-                        CustomOrderDetailWidget(
-                          order: widget.pond.detailedOrders[actualIndex],
-                          pond: widget.pond,
+              _selectedDay != null && _selectedDay!.isAfter(DateTime.now())
+                  ? const SizedBox(
+                      height: 500,
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Bạn không thể chọn ngày trong tương lai.',
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.red,
+                              ),
+                            ),
+                          ],
                         ),
-                        Container(
-                          height: 5,
-                          color: Color(0xFFDDDDDD),
-                        ),
-                      ],
-                    );
-                  },
-                ),
-              ),
+                      ),
+                    )
+                  : Visibility(
+                      visible: _isDetailVisible,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemCount: widget.pond.detailedOrders.length * 2,
+                        itemBuilder: (context, index) {
+                          int actualIndex =
+                              index % widget.pond.detailedOrders.length;
+                          return Column(
+                            children: [
+                              CustomOrderDetailWidget(
+                                order: widget.pond.detailedOrders[actualIndex],
+                                pond: widget.pond,
+                              ),
+                              Container(
+                                height: 5,
+                                color: Color(0xFFDDDDDD),
+                              ),
+                            ],
+                          );
+                        },
+                      ),
+                    ),
             ],
           ),
         ),
@@ -179,7 +282,10 @@ class _StatsDetailPageState extends State<StatsDetailPage> {
               children: [
                 SizedBox(width: 12),
                 Text(
-                  '01/12 - 01/01',
+                  DateFormat('dd/MM').format(DateTime.now()) +
+                      ' - ' +
+                      DateFormat('dd/MM')
+                          .format(DateTime.now().add(Duration(days: 1))),
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.black,

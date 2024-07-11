@@ -142,8 +142,8 @@ class _ReferredContentState extends State<ReferredContent>
             Expanded(
               child: TabBar(
                 controller: _tabController,
-                isScrollable: true,
-                indicator: const BoxDecoration(),
+                isScrollable: false,
+                indicator: BoxDecoration(),
                 indicatorWeight: 0,
                 labelPadding: EdgeInsets.zero,
                 labelStyle: const TextStyle(
@@ -156,7 +156,7 @@ class _ReferredContentState extends State<ReferredContent>
                   color: Color(0xFF808080),
                   fontWeight: FontWeight.bold,
                 ),
-                tabs: const[
+                tabs: const [
                   Tab(
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 3),
@@ -254,20 +254,42 @@ class _ReferredContentState extends State<ReferredContent>
               ),
               title: Row(
                 children: [
-                  Text(member.name),
+                  Text(
+                    member.name,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
                   if (member.rank != null) ...[
-                    const Text(' ('),
-                    Text('${member.rank}'),
-                    const Text(')'),
+                    const Text(
+                      ' (',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.black,
+                      ),
+                    ),
+                    Text(
+                      '${member.rank}',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const Text(
+                      ')',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.black,
+                      ),
+                    ),
                   ],
                 ],
               ),
               subtitle: Text(
                 'Tham gia từ ${member.joinDate}',
-                style: const TextStyle(
-                  fontSize: 10,
-                  color: Color(0xFF808080)
-                ),
+                style: const TextStyle(fontSize: 10, color: Color(0xFF808080)),
               ),
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -287,7 +309,7 @@ class _ReferredContentState extends State<ReferredContent>
                     child: Text(
                       member.hasJoined ? 'Đã tham gia' : 'Chưa tham gia',
                       style: TextStyle(
-                        fontSize: 11,
+                        fontSize: 10,
                         fontFamily: 'BeVietnam',
                         color: member.hasJoined
                             ? const Color(0xFF0B894C)
@@ -318,5 +340,3 @@ class _ReferredContentState extends State<ReferredContent>
         });
   }
 }
-
-
