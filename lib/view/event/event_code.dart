@@ -207,10 +207,6 @@ class RewardCard extends StatelessWidget {
                     padding: EdgeInsets.fromLTRB(20, 50, 20, 50),
                     child: Image.asset(
                       item.qrcode,
-                      //width:
-                      //40.0, // Set a desired width for the icon (optional)
-                      //height:
-                      //40.0, // Set a desired height for the icon (optional)
                     ),
                   ),
                 ],
@@ -226,25 +222,80 @@ class RewardCard extends StatelessWidget {
 class TabBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final kW = MediaQuery.of(context).size.width;
+    final kH = MediaQuery.of(context).size.height;
     return DefaultTabController(
       initialIndex: 0,
       length: 4,
       child: Column(
         children: [
           Container(
-            color: Color.fromARGB(255, 255, 255, 255),
+            height: 60,
+            color: Colors.white,
             child: TabBar(
-              labelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+              padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+              labelStyle: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 13,
+                  color: Colors.black),
+              indicatorPadding: EdgeInsets.fromLTRB(15, 0, 15, 4),
               indicatorWeight: 4,
               indicatorSize: TabBarIndicatorSize.tab,
               indicatorColor: Colors.orange,
-              labelColor: Colors.orange,
+              labelColor: Colors.black,
               unselectedLabelColor: const Color.fromARGB(255, 0, 0, 0),
+              indicator: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.orange),
               tabs: [
-                Tab(text: 'Mới nhất'),
-                Tab(text: 'Cũ nhất'),
-                Tab(text: 'Đã nhận'),
-                Tab(text: 'Chưa nhận'),
+                Tab(
+                  child: Container(
+                    height: 60,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.black, width: 1)),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text("Mới nhất"),
+                    ),
+                  ),
+                ),
+                Tab(
+                  child: Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.black, width: 1)),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text("Cũ nhất"),
+                    ),
+                  ),
+                ),
+                Tab(
+                  child: Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.black, width: 1)),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text("Đã nhận"),
+                    ),
+                  ),
+                ),
+                Tab(
+                  child: Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.black, width: 1)),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text("Chưa nhận"),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
