@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../widget/custom_text.dart';
 
 class CreateEvent extends StatefulWidget {
@@ -21,15 +21,25 @@ class _CreateEventState extends State<CreateEvent> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Get.back();
+          },
+        ),
+        title: Center(
           child: Text(
             "Tạo sự kiện",
-            style: TextStyle(color: Colors.white),
+            style: GoogleFonts.beVietnamPro(
+                textStyle: TextStyle(color: Colors.white)),
           ),
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.done_all),
+            icon: const Icon(
+              Icons.done_all,
+              color: Colors.white,
+            ),
             onPressed: () {},
           ),
         ],
@@ -84,7 +94,7 @@ class _CreateEventState extends State<CreateEvent> {
 
   Widget _buildInformationForm(double kW) {
     return Container(
-      height: kW < 450 ? 600 : 500,
+      height: kW < 450 ? 550 : 500,
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
@@ -96,14 +106,15 @@ class _CreateEventState extends State<CreateEvent> {
         padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
         child: Column(
           children: [
-            const Align(
+            Align(
               alignment: Alignment.centerLeft,
               child: Text(
                 'Thông tin sự kiện',
-                style: TextStyle(
+                style: GoogleFonts.beVietnamPro(
+                    textStyle: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.w700,
-                ),
+                )),
               ),
             ),
             const SizedBox(height: 12),
@@ -113,7 +124,6 @@ class _CreateEventState extends State<CreateEvent> {
             const SizedBox(height: 12),
             _buildTextFormField(
               ' Số lượng phần quà (không bắt buộc)',
-              
               minLines: 1,
               maxLines: 3,
             ),
@@ -198,15 +208,17 @@ class _CreateEventState extends State<CreateEvent> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Text(
+        Text(
           'Điều kiện tham gia',
-          style: TextStyle(
+          style: GoogleFonts.beVietnamPro(
+              textStyle: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,
-          ),
+          )),
         ),
         Switch(
           value: switchValue,
+          activeColor: Color(0xff0B894C),
           onChanged: (value) {
             setState(() {
               switchValue = value;
@@ -221,12 +233,14 @@ class _CreateEventState extends State<CreateEvent> {
     return Column(
       children: [
         Row(
-          children: const [
-             Icon(Icons.settings),
-             SizedBox(width: 6),
-             Text('Có điểm CCV từ', style: TextStyle(fontSize: 16)),
-             SizedBox(width: 6),
-             Expanded(
+          children: [
+            Icon(Icons.settings),
+            SizedBox(width: 6),
+            Text('Có điểm CCV từ',
+                style: GoogleFonts.beVietnamPro(
+                    textStyle: TextStyle(fontSize: 16))),
+            SizedBox(width: 6),
+            Expanded(
               child: TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
@@ -238,8 +252,10 @@ class _CreateEventState extends State<CreateEvent> {
                 keyboardType: TextInputType.number,
               ),
             ),
-             SizedBox(width: 6),
-             Text('trở lên', style: TextStyle(fontSize: 16)),
+            SizedBox(width: 6),
+            Text('trở lên',
+                style: GoogleFonts.beVietnamPro(
+                    textStyle: TextStyle(fontSize: 16))),
           ],
         ),
         const SizedBox(height: 16),
@@ -247,7 +263,9 @@ class _CreateEventState extends State<CreateEvent> {
           children: [
             const Icon(Icons.settings),
             const SizedBox(width: 8),
-            const Text('Có xếp loại', style: TextStyle(fontSize: 16)),
+            Text('Có xếp loại',
+                style: GoogleFonts.beVietnamPro(
+                    textStyle: TextStyle(fontSize: 16))),
             const SizedBox(width: 8),
             Expanded(
               child: DropdownButton<String>(
@@ -268,7 +286,9 @@ class _CreateEventState extends State<CreateEvent> {
               ),
             ),
             const SizedBox(width: 6),
-            const Text('trở lên', style: TextStyle(fontSize: 16)),
+            Text('trở lên',
+                style: GoogleFonts.beVietnamPro(
+                    textStyle: TextStyle(fontSize: 16))),
           ],
         ),
       ],

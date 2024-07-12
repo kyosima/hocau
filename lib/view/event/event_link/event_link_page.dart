@@ -289,7 +289,6 @@ class _buildEvenLinkIntroducedContentState
                     ),
                   ),
                   onTap: () {
-                    // Navigate to user details or perform another action
                   },
                 );
               },

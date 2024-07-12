@@ -1,10 +1,9 @@
 import 'dart:math';
 import 'dart:ui';
-
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hocau/controller/event/event_controller.dart';
 import 'package:hocau/view/event/event_managers/notification_handler.dart';
 import 'package:hocau/widget/custom_dialog.dart';
@@ -233,14 +232,21 @@ class SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
                     children: [
                       IconButton(
                         icon: const Icon(Icons.arrow_back, color: Colors.white),
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.back();
+                        },
                       ),
                       const Spacer(),
-                      const Text('Quản lý sự kiện',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600)),
+                      Text(
+                        'Quản lý sự kiện',
+                        style: GoogleFonts.beVietnamPro(
+                          textStyle: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
                       appBarSpace,
                       const Spacer(),
                       appBarSpace,
@@ -283,10 +289,12 @@ class SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
                     ? null
                     : deltaExtent - tapTargetSize - cardPadding,
                 child: TextField(
-                  style: TextStyle(color: textColor),
+                  style: GoogleFonts.beVietnamPro(
+                      textStyle: TextStyle(color: textColor)),
                   decoration: InputDecoration(
                     hintText: 'Tìm kiếm...',
-                    hintStyle: TextStyle(color: textColor),
+                    hintStyle: GoogleFonts.beVietnamPro(
+                        textStyle: TextStyle(color: textColor)),
                     prefixIcon: Icon(Icons.search, color: textColor),
                     suffixIcon: constraints.maxHeight < maxExtent
                         ? IconButton(
@@ -376,22 +384,23 @@ Widget _bodyEventCard(String event) {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Tham gia quét nhận mã quà',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
+          Text('Tham gia quét nhận mã quà',
+              style: GoogleFonts.beVietnamPro(
+                  textStyle: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.w700,
+              ))),
           const SizedBox(height: 6),
-          Text(
-            event,
-            overflow: TextOverflow.clip,
-            maxLines: 3,
-            style: const TextStyle(
-                color: Colors.white, fontSize: 12, fontWeight: FontWeight.w300),
-          ),
+          Text(event,
+              overflow: TextOverflow.clip,
+              maxLines: 3,
+              style: GoogleFonts.beVietnamPro(
+                textStyle: TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w300),
+              )),
         ],
       ),
     ),
@@ -412,21 +421,20 @@ Widget _footerEventCard(String status, DateTime startDate, DateTime endDate,
         Row(children: [
           const Icon(Icons.lock_clock, color: Colors.white),
           Text(
-            "Từ: ${DateFormat('dd/MM/yyyy').format(startDate)} - ${DateFormat('dd/MM/yyyy').format(endDate)}",
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-              fontSize: 10,
-            ),
-          ),
+              "Từ: ${DateFormat('dd/MM/yyyy').format(startDate)} - ${DateFormat('dd/MM/yyyy').format(endDate)}",
+              style: GoogleFonts.beVietnamPro(
+                  textStyle: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                fontSize: 10,
+              ))),
         ]),
-        Text(
-          "Đã phát: $ticket / $totalTicket",
-          style: const TextStyle(
-            fontSize: 10,
-            color: Colors.white,
-          ),
-        ),
+        Text("Đã phát: $ticket / $totalTicket",
+            style: GoogleFonts.beVietnamPro(
+                textStyle: TextStyle(
+              fontSize: 10,
+              color: Colors.white,
+            ))),
       ],
     ),
   );
@@ -473,8 +481,7 @@ List<Widget> _buildActionButtons(String event, BuildContext context) {
 
   switch (event) {
     case 'notStarted':
-      buttons.add(createButton(Icons.edit, () {
-      }));
+      buttons.add(createButton(Icons.edit, () {}));
       break;
     case 'inProgress':
       buttons.add(createButton(Icons.pause, () {
@@ -677,8 +684,9 @@ void _showNewBottomSheetLake(double kW) {
                       SizedBox(width: 20),
                       Text(
                         'Hồ tổ chức',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18),
+                        style: GoogleFonts.beVietnamPro(
+                            textStyle: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18)),
                       ),
                     ],
                   ),
@@ -690,7 +698,9 @@ void _showNewBottomSheetLake(double kW) {
                     },
                     child: Row(
                       children: [
-                        Text('Đặt lại', style: TextStyle(fontSize: 14)),
+                        Text('Đặt lại',
+                            style: GoogleFonts.beVietnamPro(
+                                textStyle: TextStyle(fontSize: 14))),
                         SizedBox(width: 10),
                       ],
                     ),
@@ -706,8 +716,9 @@ void _showNewBottomSheetLake(double kW) {
                     return ListTile(
                       title: Text(
                         lakesList[index],
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w400),
+                        style: GoogleFonts.beVietnamPro(
+                            textStyle: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w400)),
                       ),
                       trailing: IconButton(
                         icon: Icon(
@@ -779,8 +790,9 @@ void _showNewBottomSheetStatus(double kW) {
                       SizedBox(width: 20),
                       Text(
                         'Trạng thái',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18),
+                        style: GoogleFonts.beVietnamPro(
+                            textStyle: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18)),
                       ),
                     ],
                   ),
@@ -792,7 +804,9 @@ void _showNewBottomSheetStatus(double kW) {
                     },
                     child: Row(
                       children: [
-                        Text('Đặt lại', style: TextStyle(fontSize: 14)),
+                        Text('Đặt lại',
+                            style: GoogleFonts.beVietnamPro(
+                                textStyle: TextStyle(fontSize: 14))),
                         SizedBox(width: 10),
                       ],
                     ),
@@ -808,8 +822,9 @@ void _showNewBottomSheetStatus(double kW) {
                     return ListTile(
                       title: Text(
                         statussList[index],
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w400),
+                        style: GoogleFonts.beVietnamPro(
+                            textStyle: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w400)),
                       ),
                       trailing: IconButton(
                         icon: Icon(

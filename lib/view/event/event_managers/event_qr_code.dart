@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hocau/unit.dart';
-import 'package:hocau/widget/button_account.dart';
 import 'package:hocau/widget/custom_text.dart';
 
 class EventQrCode extends StatelessWidget {
@@ -10,23 +11,32 @@ class EventQrCode extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Get.back();
+          },
+        ),
+        title: Center(
           child: Text(
             "Chi tiết sự kiện",
-            style: TextStyle(color: Colors.white),
+            style: GoogleFonts.beVietnamPro(
+                textStyle: TextStyle(color: Colors.white)),
           ),
         ),
         actions: [],
       ),
       body: Column(
         children: [
-          const SizedBox(
+          SizedBox(
             height: 70,
             child: Align(
               alignment: Alignment.center,
               child: Text(
                 'Đưa mã QR này cho người tham dự quét',
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
+                style: GoogleFonts.beVietnamPro(
+                    textStyle:
+                        TextStyle(fontSize: 14, fontWeight: FontWeight.w700)),
               ),
             ),
           ),

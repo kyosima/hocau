@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hocau/widget/custom_dialog.dart';
 import 'package:intl/intl.dart';
 import '../../../controller/event/event_controller.dart';
@@ -14,16 +15,23 @@ class EventDetailPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Get.back();
+          },
+        ),
+        title: Center(
           child: Text(
             "Chi tiết sự kiện",
-            style: TextStyle(color: Colors.white),
+            style: GoogleFonts.beVietnamPro(
+                textStyle: TextStyle(color: Colors.white)),
           ),
         ),
         actions: [
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.qr_code_scanner),
+            icon: const Icon(Icons.qr_code_scanner, color: Colors.white),
           ),
         ],
       ),
@@ -105,10 +113,11 @@ class EventDetailPage extends StatelessWidget {
       alignment: Alignment.centerLeft,
       child: Text(
         title,
-        style: const TextStyle(
+        style: GoogleFonts.beVietnamPro(
+            textStyle: TextStyle(
           fontSize: 22,
           fontWeight: FontWeight.w700,
-        ),
+        )),
       ),
     );
   }
@@ -181,7 +190,7 @@ class EventDetailPage extends StatelessWidget {
           const SizedBox(height: 12),
           if (switchValue) ...[
             _buildMinPointsRequiredRow(event.minPointsRequired),
-            const SizedBox(height: 12),
+            const SizedBox(height: 6),
             _buildRankingRow(),
           ],
         ],
@@ -195,12 +204,14 @@ class EventDetailPage extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(
+          style: GoogleFonts.beVietnamPro(
+              textStyle: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,
-          ),
+          )),
         ),
         Switch(
+          activeColor: Colors.grey,
           value: switchValue,
           onChanged: (value) {},
         ),
@@ -213,7 +224,9 @@ class EventDetailPage extends StatelessWidget {
       children: [
         const Icon(Icons.settings),
         const SizedBox(width: 6),
-        const Text('Có điểm CCV từ', style: TextStyle(fontSize: 14)),
+        Text('Có điểm CCV từ',
+            style:
+                GoogleFonts.beVietnamPro(textStyle: TextStyle(fontSize: 14))),
         const SizedBox(width: 6),
         Expanded(
           child: TextField(
@@ -236,7 +249,9 @@ class EventDetailPage extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 6),
-        const Text('trở lên', style: TextStyle(fontSize: 14)),
+        Text('trở lên',
+            style:
+                GoogleFonts.beVietnamPro(textStyle: TextStyle(fontSize: 14))),
       ],
     );
   }
@@ -246,7 +261,9 @@ class EventDetailPage extends StatelessWidget {
       children: [
         const Icon(Icons.settings),
         const SizedBox(width: 8),
-        const Text('Có xếp loại', style: TextStyle(fontSize: 14)),
+        Text('Có xếp loại',
+            style:
+                GoogleFonts.beVietnamPro(textStyle: TextStyle(fontSize: 14))),
         const SizedBox(width: 8),
         Expanded(
           child: DropdownButton<String>(
@@ -269,7 +286,9 @@ class EventDetailPage extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 6),
-        const Text('trở lên', style: TextStyle(fontSize: 14)),
+        Text('trở lên',
+            style:
+                GoogleFonts.beVietnamPro(textStyle: TextStyle(fontSize: 14))),
       ],
     );
   }
@@ -284,12 +303,13 @@ class EventDetailPage extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text(
+          Text(
             'QR tham gia sự kiện',
-            style: TextStyle(
+            style: GoogleFonts.beVietnamPro(
+                textStyle: TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.w700,
-            ),
+            )),
           ),
           IconButton(
             onPressed: () {

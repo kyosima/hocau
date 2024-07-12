@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 // ignore: must_be_immutable
 class CustomText extends StatelessWidget {
@@ -30,13 +31,14 @@ class CustomText extends StatelessWidget {
       textAlign: textAlign,
       overflow: textOverflow,
       maxLines: maxLine,
-      style: TextStyle(
+      style: GoogleFonts.beVietnamPro(
+                          textStyle:TextStyle(
         color: color,
         fontSize: kW <= 450 ? fontSize : fontSize! + 5,
         fontWeight: fontWeight,
         decoration: textDecoration,
         height: 1.3,
-      ),
+      )),
     );
   }
 }

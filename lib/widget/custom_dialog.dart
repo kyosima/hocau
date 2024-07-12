@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomDialog extends StatelessWidget {
   final IconData icon;
@@ -52,16 +53,18 @@ class CustomDialog extends StatelessWidget {
                     SizedBox(height: 16),
                     Text(
                       title,
-                      style:
-                          TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
+                      style: GoogleFonts.beVietnamPro(
+                          textStyle: TextStyle(
+                              fontSize: 22, fontWeight: FontWeight.w700)),
                     ),
                     SizedBox(height: 16),
                     Text(
                       content,
-                      style: TextStyle(
-                          height: 1.7,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400),
+                      style: GoogleFonts.beVietnamPro(
+                          textStyle: TextStyle(
+                              height: 1.6,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400)),
                       textAlign: TextAlign.start,
                     ),
                   ],
