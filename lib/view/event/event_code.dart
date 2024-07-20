@@ -15,9 +15,10 @@ class EventCodePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 11, 137, 76),
+          backgroundColor: pColor,
           centerTitle: true,
           title: Text(
             'Mã nhận quà',
