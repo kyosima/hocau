@@ -10,6 +10,11 @@ import 'package:hocau/view/dashboard/dashboard_page.dart';
 import 'package:hocau/view/event/event_code.dart';
 import 'package:hocau/view/event/event_details.dart';
 import 'package:hocau/view/event/event_qrcode.dart';
+import 'package:hocau/view/event/event_link/event_link_page.dart';
+import 'package:hocau/view/event/event_managers/create_event_page.dart';
+import 'package:hocau/view/event/event_managers/event_detail_page.dart';
+import 'package:hocau/view/event/event_managers/event_page.dart';
+import 'package:hocau/view/event/event_managers/event_qr_code.dart';
 import 'package:hocau/view/lake/lake_child_detail_page.dart';
 import 'package:hocau/view/lake/lake_detail_page.dart';
 import 'package:hocau/view/notification/notificaiton_page.dart';
@@ -100,6 +105,18 @@ class MyApp extends StatelessWidget {
           name: '/event_qrcode',
           page: () => EventQrcodePage(),
         ),
+          GetPage(
+          name: '/eventPage',
+          page: () => EventPage(),
+        ),
+        GetPage(
+          name: '/createEvent',
+          page: () => CreateEvent(),
+        ),
+        GetPage(name: '/detailEvent', page: () => EventDetailAccountPage()),
+        GetPage(name: '/event_qr', page: () => EventQrCode()),
+        GetPage(name: '/event_link', page: () => EventLinkPage()),
+
       ],
     );
   }
