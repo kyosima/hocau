@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hocau/view/event/event_managers/event_page.dart';
 import 'package:hocau/widget/custom_text.dart';
 
 import '../../unit.dart';
 import '../../widget/button_account.dart';
+import '../referral/referral_link_page.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({Key? key}) : super(key: key);
@@ -134,15 +134,9 @@ class AccountPage extends StatelessWidget {
                     ButtonAccount(
                       title: 'Liên kết giới thiệu',
                       icon: Icons.link,
-                      onTap: () => Get.toNamed('/event_link')
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    ButtonAccount(
-                      title: 'Quản lý sự kiện',
-                      icon: Icons.card_giftcard_outlined,
-                      onTap: ()=> Get.toNamed('/eventPage')
+                      onTap: (){
+                        Get.to(() => ReferralLinkPage());
+                      },
                     ),
                     SizedBox(
                       height: 15,

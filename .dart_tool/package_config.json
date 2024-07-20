@@ -326,6 +326,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "simple_gesture_detector",
+      "rootUri": "file:///Users/simakyo/.pub-cache/hosted/pub.dev/simple_gesture_detector-0.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "sky_engine",
       "rootUri": "file:///Users/simakyo/Documents/development/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
@@ -360,6 +366,12 @@
       "rootUri": "file:///Users/simakyo/.pub-cache/hosted/pub.dev/string_scanner-1.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
+    },
+    {
+      "name": "table_calendar",
+      "rootUri": "file:///Users/simakyo/.pub-cache/hosted/pub.dev/table_calendar-3.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
     },
     {
       "name": "term_glyph",
@@ -416,7 +428,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2024-07-20T02:13:50.111766Z",
+  "generated": "2024-07-20T02:20:29.821402Z",
   "generator": "pub",
   "generatorVersion": "3.4.3",
   "flutterRoot": "file:///Users/simakyo/Documents/development/flutter",

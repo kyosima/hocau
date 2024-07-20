@@ -18,9 +18,10 @@ import 'package:hocau/view/event/event_managers/event_qr_code.dart';
 import 'package:hocau/view/lake/lake_child_detail_page.dart';
 import 'package:hocau/view/lake/lake_detail_page.dart';
 import 'package:hocau/view/notification/notificaiton_page.dart';
+import 'package:hocau/view/referral/referral_link_page.dart';
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
     home: MyApp(),
   ));
@@ -40,6 +41,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
         appBarTheme: AppBarTheme(
             backgroundColor: pColor,
+            iconTheme: IconThemeData(
+              color: Colors.white,
+            ),
             elevation: 0,
             titleTextStyle: TextStyle(
               fontSize: kW < 450 ? 17 : 22,
@@ -93,6 +97,7 @@ class MyApp extends StatelessWidget {
           name: '/checkout',
           page: () => CheckOutPage(),
         ),
+
         GetPage(
           name: '/event_details',
           page: () => EventDetailPage(),
@@ -116,6 +121,8 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/detailEvent', page: () => EventDetailAccountPage()),
         GetPage(name: '/event_qr', page: () => EventQrCode()),
         GetPage(name: '/event_link', page: () => EventLinkPage()),
+
+        GetPage(name: '/referralLink', page: () => ReferralLinkPage()),
 
       ],
     );

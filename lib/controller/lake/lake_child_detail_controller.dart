@@ -13,7 +13,7 @@ class LakeChildController extends GetxController {
   final gColor = Color(0xffFFBA09).obs;
 
   final name = 'Suất 4 tiếng + 1 tiếng (7h-12h)'.obs;
-  final icon = Icon(
+  final icon = const Icon(
     Icons.brightness_5_outlined,
     color: Color(0xffFFBA09),
   ).obs;
